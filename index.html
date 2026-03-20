@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>가다 — 건설사 노무 리스크 통합 솔루션</title>
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Pretendard', -apple-system, sans-serif; color: #111827; background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --blue:    #0669F7; --blue-d:  #044FC0; --blue-lt: #EBF3FF;
+      --gada:    #00B87A; --gada-d:  #009A65; --gada-lt: #E6F9F3;
+      --yellow:  #FFC72C; --yellow-lt:#FFF8E1;
+      --dark:    #0F172A; --dark2:   #1E293B;
+      --t1: #111827; --t2: #4B5563; --t3: #9CA3AF;
+      --bg: #F5F7FA; --border: #E2E8F0;
+      --r: 10px; --r-lg: 18px;
+      --shadow: 0 1px 4px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
+    }
+
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ── */
+    #nav {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,.97); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: 60px; display: flex; align-items: center; padding: 0 24px; gap: 16px;
+    }
+    .nav-brand { font-size: 18px; font-weight: 900; color: var(--t1); letter-spacing: -.04em; display: flex; align-items: center; gap: 8px; }
+    .nav-brand-mark { width: 32px; height: 32px; background: var(--gada); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: #fff; letter-spacing: -.02em; }
+    .nav-sp { flex: 1; }
+    .nav-sub { display: flex; align-items: center; gap: 6px; }
+    .nav-sub-link {
+      font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: var(--r);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .nsl-blue { color: var(--blue); background: var(--blue-lt); }
+    .nsl-blue:hover { background: #D6E8FF; }
+    .nsl-dark { color: rgba(255,255,255,.8); background: var(--dark2); }
+    .nsl-dark:hover { background: var(--dark); color: #fff; }
+    .nav-cta { background: var(--gada); color: #fff; padding: 8px 18px; border-radius: var(--r); font-size: 13px; font-weight: 700; margin-left: 8px; }
+    .nav-cta:hover { background: var(--gada-d); }
+
+    /* ── HERO ── */
+    #hero { background: var(--dark); padding: 96px 0 88px; position: relative; overflow: hidden; text-align: center; }
+    .hero-glow { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(120px); opacity: .12; }
+    .g1 { width: 500px; height: 500px; background: var(--gada); top: -80px; right: -40px; }
+    .g2 { width: 300px; height: 300px; background: var(--blue); bottom: -60px; left: 8%; }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 99px; padding: 6px 18px; margin-bottom: 28px;
+      font-size: 13px; font-weight: 600; color: rgba(255,255,255,.6);
+    }
+    .hero-h1 { font-size: clamp(32px, 5.2vw, 62px); font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: -.035em; margin-bottom: 20px; }
+    .hero-h1 .acc-g { color: var(--gada); }
+    .hero-h1 .acc-y { color: var(--yellow); }
+    .hero-sub { font-size: 17px; color: rgba(255,255,255,.55); line-height: 1.85; max-width: 560px; margin: 0 auto 36px; }
+    .hero-sub strong { color: rgba(255,255,255,.85); }
+    .hero-products {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 99px; padding: 8px 20px; margin-bottom: 36px;
+      font-size: 14px; font-weight: 700;
+    }
+    .prod-tag { padding: 3px 12px; border-radius: 99px; font-size: 13px; font-weight: 800; }
+    .pt-blue { background: var(--blue); color: #fff; }
+    .pt-fp   { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); border: 1px solid rgba(255,255,255,.2); }
+    .prod-sep { color: rgba(255,255,255,.2); font-size: 18px; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-family: 'Pretendard', sans-serif; font-weight: 700; border: none; border-radius: var(--r); cursor: pointer; transition: all .18s; text-decoration: none; }
+    .btn-gada { background: var(--gada); color: #fff; padding: 14px 28px; font-size: 15px; box-shadow: 0 4px 16px rgba(0,184,122,.3); }
+    .btn-gada:hover { background: var(--gada-d); transform: translateY(-1px); }
+    .btn-ghost { background: rgba(255,255,255,.06); color: rgba(255,255,255,.75); border: 1.5px solid rgba(255,255,255,.18); padding: 13px 24px; font-size: 14px; }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+    /* ── ISSUE SPLIT ── */
+    #issues { display: grid; grid-template-columns: 1fr 1fr; }
+    .issue-panel { padding: 64px 52px 72px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .ip-blue { background: var(--blue); }
+    .ip-dark { background: var(--dark2); }
+    .ip-glow { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px); opacity: .12; width: 320px; height: 320px; bottom: -60px; right: -60px; }
+    .ip-blue .ip-glow { background: #fff; }
+    .ip-dark .ip-glow { background: var(--blue); }
+    .ip-inner { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
+    .ip-num { font-size: 80px; font-weight: 900; color: rgba(255,255,255,.07); line-height: 1; margin-bottom: -8px; letter-spacing: -.05em; }
+    .ip-issue-label { display: inline-block; margin-bottom: 10px; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+    .ip-solution-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px; border-radius: 99px;
+      font-size: 13px; font-weight: 900; margin-bottom: 18px; align-self: flex-start;
+    }
+    .isb-blue { background: rgba(255,255,255,.2); color: #fff; }
+    .isb-fp   { background: var(--yellow); color: var(--dark); }
+    .ip-title { font-size: clamp(20px, 2.2vw, 28px); font-weight: 900; color: #fff; line-height: 1.25; letter-spacing: -.02em; margin-bottom: 16px; }
+    .ip-desc { font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.85; margin-bottom: 24px; }
+    .ip-list { list-style: none; display: flex; flex-direction: column; gap: 12px; flex: 1; margin-bottom: 32px; }
+    .ip-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: rgba(255,255,255,.75); line-height: 1.65; }
+    .ip-icon { font-size: 16px; flex-shrink: 0; line-height: 1.4; }
+    .ip-divider { height: 1px; margin-bottom: 28px; }
+    .ip-blue .ip-divider { background: rgba(255,255,255,.15); }
+    .ip-dark .ip-divider { background: rgba(255,255,255,.08); }
+    .ip-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; border-radius: var(--r); font-size: 15px; font-weight: 800; transition: all .18s; align-self: flex-start; }
+    .ip-btn-wh { background: #fff; color: var(--blue); }
+    .ip-btn-wh:hover { box-shadow: 0 6px 20px rgba(0,0,0,.18); transform: translateY(-1px); }
+    .ip-btn-outline { background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.25); color: #fff; }
+    .ip-btn-outline:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.5); }
+    .ip-note { margin-top: 12px; font-size: 12px; color: rgba(255,255,255,.3); font-weight: 600; }
+
+    /* ── GADA UNIFIED ── */
+    #gada-unified {
+      background: linear-gradient(135deg, #003D26 0%, #005C3A 50%, #004D30 100%);
+      padding: 80px 0; position: relative; overflow: hidden;
+    }
+    #gada-unified::before {
+      content: ''; position: absolute; top: -40%; right: -5%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: rgba(0,184,122,.1); filter: blur(80px);
+    }
+    .gu-inner { position: relative; z-index: 1; }
+    .gu-top { text-align: center; margin-bottom: 52px; }
+    .gu-eyebrow { font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--gada); margin-bottom: 14px; }
+    .gu-title { font-size: clamp(28px, 3.8vw, 46px); font-weight: 900; color: #fff; line-height: 1.15; letter-spacing: -.03em; margin-bottom: 16px; }
+    .gu-title em { font-style: normal; color: var(--gada); }
+    .gu-sub { font-size: 16px; color: rgba(255,255,255,.6); line-height: 1.85; max-width: 560px; margin: 0 auto; }
+    .gu-compare-wrap { overflow-x: auto; margin-bottom: 40px; }
+    /* Flat grid — all 32 cells share the same row tracks, guaranteeing alignment */
+    .gu-compare {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.15fr;
+      border-radius: var(--r-lg); overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,.35);
+      min-width: 660px;
+    }
+    .gc-cell {
+      display: flex; align-items: center; justify-content: center;
+      padding: 15px 16px; text-align: center;
+      font-size: 13px; font-weight: 600; line-height: 1.45;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    /* Header row */
+    .gc-th { padding: 24px 20px; flex-direction: column; gap: 5px; border-bottom: 2px solid rgba(255,255,255,.1); }
+    /* Column background colors */
+    .gc-col-lbl  { background: rgba(0,0,0,.2);   justify-content: flex-start; padding-left: 22px; color: rgba(255,255,255,.55); font-weight: 700; }
+    .gc-col-blue { background: rgba(255,255,255,.04); }
+    .gc-col-fp   { background: rgba(255,255,255,.04); }
+    .gc-col-gada { background: rgba(0,184,122,.09); border-left: 2px solid rgba(0,184,122,.35); border-right: 2px solid rgba(0,184,122,.35); }
+    /* Header backgrounds */
+    .gc-th.gc-col-lbl  { background: rgba(255,255,255,.04); justify-content: flex-end; padding-bottom: 18px; }
+    .gc-th.gc-col-blue { background: var(--blue); }
+    .gc-th.gc-col-fp   { background: var(--dark2); }
+    .gc-th.gc-col-gada { background: linear-gradient(160deg, #00CC88 0%, var(--gada) 100%); border-top: 2px solid var(--gada); }
+    /* Last row — remove bottom border */
+    .gc-last { border-bottom: none; }
+    .gc-last.gc-col-gada { border-bottom: 2px solid rgba(0,184,122,.35); }
+
+    .gc-logo { font-size: 15px; font-weight: 900; color: #fff; letter-spacing: -.02em; line-height: 1.2; }
+    .gc-logo span { opacity: .65; font-size: 11px; font-weight: 700; display: block; margin-top: 3px; letter-spacing: .04em; }
+    .gc-th.gc-col-gada .gc-logo { font-size: 17px; }
+    .gc-rec-badge { display: inline-block; padding: 2px 10px; background: rgba(255,255,255,.25); border-radius: 99px; font-size: 10px; font-weight: 800; color: #fff; letter-spacing: .06em; margin-bottom: 2px; }
+    .gc-yes   { color: #fff; font-weight: 800; }
+    .gc-no    { color: rgba(255,255,255,.2); font-size: 18px; }
+    .gc-yes-g { color: #4DFFA8; font-weight: 900; }
+    .gu-cta { text-align: center; }
+    .btn-gada-lg { background: var(--gada); color: #fff; padding: 16px 36px; font-size: 16px; font-weight: 800; border-radius: var(--r-lg); box-shadow: 0 4px 20px rgba(0,184,122,.35); display: inline-flex; align-items: center; gap: 8px; transition: all .18s; }
+    .btn-gada-lg:hover { background: var(--gada-d); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,184,122,.4); }
+    .gu-trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
+    .gt-item { font-size: 13px; color: rgba(255,255,255,.4); font-weight: 600; display: flex; align-items: center; gap: 5px; }
+    @media (max-width: 700px) {
+      .gu-compare { min-width: 560px; grid-template-columns: 1.3fr 0.9fr 0.9fr 1fr; }
+      .gc-cell { font-size: 12px; padding: 12px 10px; }
+      .gc-col-lbl { padding-left: 12px; }
+    }
+    /* ── FLOW BOX ── */
+    #flow { background: var(--bg); padding: 72px 0; }
+    .flow-eyebrow { font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--gada); margin-bottom: 12px; }
+    .flow-title { font-size: clamp(24px, 3vw, 36px); font-weight: 900; line-height: 1.2; letter-spacing: -.025em; color: var(--t1); margin-bottom: 14px; }
+    .flow-sub { font-size: 16px; color: var(--t2); line-height: 1.85; max-width: 560px; }
+    .flow-wrap { background: #fff; border-radius: var(--r-lg); padding: 32px; border: 1.5px solid var(--border); overflow-x: auto; box-shadow: var(--shadow); }
+    .flow-row { display: flex; align-items: center; justify-content: center; min-width: 560px; }
+    .fn { text-align: center; flex: 1; min-width: 80px; }
+    .fn-ico { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 8px; }
+    .fi-gray   { background: var(--bg); border: 1.5px solid var(--border); }
+    .fi-blue   { background: var(--blue-lt); }
+    .fi-yellow { background: var(--yellow-lt); }
+    .fi-gada   { background: var(--gada); font-size: 12px; font-weight: 900; color: #fff; box-shadow: 0 4px 14px rgba(0,184,122,.35); }
+    .fi-fp     { background: var(--gada);  font-size: 11px; font-weight: 900; color: #fff; box-shadow: 0 4px 14px rgba(0,184,122,.3); }
+    .fn-lbl { font-size: 14px; font-weight: 700; color: var(--t2); }
+    .fn-sub { font-size: 12px; color: var(--t3); margin-top: 2px; }
+    .fn-gada .fn-lbl { color: var(--gada); font-weight: 900; }
+    .fn-fp   .fn-lbl { color: var(--dark); font-weight: 900; }
+    .flow-arr { padding: 0 8px; color: var(--t3); font-size: 14px; font-weight: 700; flex-shrink: 0; }
+    .flow-inner { display: flex; flex-direction: column; gap: 28px; margin-top: 32px; }
+    .flow-track-label { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); margin-bottom: 10px; }
+
+    /* ── CTA ── */
+    #cta { background: var(--dark); padding: 80px 0; text-align: center; position: relative; overflow: hidden; }
+    #cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 70% 50%, rgba(0,184,122,.08) 0%, transparent 70%); }
+    .cta-inner { position: relative; z-index: 1; }
+    #cta h2 { font-size: clamp(26px, 4vw, 42px); font-weight: 900; color: #fff; line-height: 1.2; letter-spacing: -.025em; margin-bottom: 14px; }
+    #cta h2 em { font-style: normal; color: var(--gada); }
+    #cta p { font-size: 16px; color: rgba(255,255,255,.55); margin-bottom: 32px; line-height: 1.75; }
+    .cta-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+    .btn-gada-cta { background: var(--gada); color: #fff; padding: 15px 32px; font-size: 15px; border-radius: var(--r); font-weight: 800; display: inline-flex; align-items: center; gap: 6px; transition: all .18s; }
+    .btn-gada-cta:hover { background: var(--gada-d); box-shadow: 0 8px 24px rgba(0,184,122,.3); transform: translateY(-2px); }
+    .btn-outline-cta { background: transparent; color: rgba(255,255,255,.7); border: 1.5px solid rgba(255,255,255,.2); padding: 14px 28px; font-size: 14px; border-radius: var(--r); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; transition: all .18s; }
+    .btn-outline-cta:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+    .cta-trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 24px; }
+    .ct-item { font-size: 13px; color: rgba(255,255,255,.4); font-weight: 600; display: flex; align-items: center; gap: 5px; }
+
+    /* ── FOOTER ── */
+    footer { background: #080E18; padding: 40px 0; border-top: 1px solid rgba(255,255,255,.04); }
+    .foot-brand { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .foot-brand-mark { width: 24px; height: 24px; background: var(--gada); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 900; color: #fff; }
+    .foot-info { font-size: 13px; color: rgba(255,255,255,.25); line-height: 1.9; }
+    .foot-copy { font-size: 12px; color: rgba(255,255,255,.15); margin-top: 8px; }
+
+    /* ── STICKY FAB ── */
+    .sticky-fab { position: fixed; bottom: calc(24px + env(safe-area-inset-bottom)); right: max(20px, env(safe-area-inset-right)); z-index: 800; background: var(--gada); color: #fff; padding: 13px 22px; border-radius: 99px; font-size: 14px; font-weight: 800; box-shadow: 0 4px 20px rgba(0,184,122,.45); display: flex; align-items: center; gap: 7px; animation: popUp .5s ease .5s both; }
+    @keyframes popUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+    .sticky-fab:hover { background: var(--gada-d); transform: scale(1.02); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .gc-logo { font-size: 13px; }
+      .gc-th.gc-col-gada .gc-logo { font-size: 14px; }
+    }
+    @media (max-width: 768px) {
+      #issues { grid-template-columns: 1fr; }
+      .issue-panel { padding: 52px 28px 60px; }
+      .nav-sub { display: none; }
+    }
+    @media (max-width: 600px) {
+      .cta-btns { flex-direction: column; align-items: center; }
+      .ip-btn { width: 100%; justify-content: center; }
+      .hero-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="gada-logo.png" alt="가다" style="height:28px;width:auto;display:block;">
+  </a>
+  <div class="nav-sp"></div>
+  <div class="nav-sub">
+    <a href="pension.html" class="nav-sub-link nsl-blue">가다 오피스</a>
+    <a href="direct-pay.html" class="nav-sub-link nsl-dark">가다 직접지급</a>
+  </div>
+  <a href="#gada-unified" class="nav-cta">통합 솔루션 보기</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-glow g1"></div>
+  <div class="hero-glow g2"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-badge">건설사 노무 리스크 통합 솔루션 — GADA</div>
+    <h1 class="hero-h1">
+      건설사의 두 가지 노무 이슈,<br />
+      <span class="acc-g">가다 하나로</span> 해결합니다
+    </h1>
+    <p class="hero-sub">
+      <strong>4대보험 신고 자동화</strong>는 가다 오피스가,<br />
+      <strong>임금 직접지급</strong>은 가다 직접지급이 각각 해결합니다.<br />
+      가다에서는 두 이슈를 한 번에 처리할 수 있습니다.
+    </p>
+    <div class="hero-products">
+      <span class="prod-tag pt-blue">가다 오피스</span>
+      <span class="prod-sep">+</span>
+      <span class="prod-tag pt-fp">가다 직접지급</span>
+      <span style="color:rgba(255,255,255,.35);margin:0 4px">=</span>
+      <span style="color:rgba(255,255,255,.85);font-weight:800">GADA 통합 솔루션</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#gada-unified" class="btn btn-gada">가다 통합 솔루션 보기 ↓</a>
+      <a href="#issues" class="btn btn-ghost">이슈별 솔루션 확인</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── ISSUE SPLIT ── -->
+<div id="issues">
+
+  <!-- 이슈 ① -->
+  <div class="issue-panel ip-blue">
+    <div class="ip-glow"></div>
+    <div class="ip-inner">
+      <div class="ip-num">01</div>
+      <div class="ip-issue-label">이슈 ① · 4대보험 신고</div>
+      <div class="ip-solution-badge isb-blue">가다 오피스로 해결</div>
+      <div class="ip-title">8일 이상 출역 근로자<br />4대보험 신고·계산 자동화</div>
+      <p class="ip-desc">
+        2025.07부터 국민연금 판단 기준이 바뀌어 건강보험과 따로 처리해야 합니다.
+        2026.01부터는 사업장 전 현장 합산 신고가 의무입니다.
+        <strong>가다 오피스</strong>가 이 모든 계산을 자동으로 처리합니다.
+      </p>
+      <ul class="ip-list">
+        <li><span class="ip-icon">⚡</span>국민연금·건강보험 기준 분리 자동 판단</li>
+        <li><span class="ip-icon">🏢</span>사업장 전 현장 합산 로직 자동 처리</li>
+        <li><span class="ip-icon">📄</span>신고 근거 데이터 자동 보관</li>
+        <li><span class="ip-icon">💸</span>오신고 1건당 최대 160,420원 손실 방지</li>
+      </ul>
+      <div class="ip-divider"></div>
+      <a href="pension.html" class="ip-btn ip-btn-wh">가다 오피스 상세 보기 →</a>
+      <p class="ip-note">시행 일정 · 기준 변경 · 리스크 케이스 포함</p>
+    </div>
+  </div>
+
+  <!-- 이슈 ② -->
+  <div class="issue-panel ip-dark">
+    <div class="ip-glow"></div>
+    <div class="ip-inner">
+      <div class="ip-num">02</div>
+      <div class="ip-issue-label">이슈 ② · 임금 직접지급</div>
+      <div class="ip-solution-badge isb-fp">가다 직접지급으로 해결</div>
+      <div class="ip-title">근로자에게 임금을<br />직접 지급해야 합니다</div>
+      <p class="ip-desc">
+        건설사 → 용역사 → 근로자 간접 구조는 근로기준법 제43조 위반 소지가 있습니다.
+        <strong>가다 직접지급</strong>은 현장 전용 계좌를 통해 직접지급 원칙을 준수하고
+        체불·횡령 리스크를 구조적으로 제거합니다.
+      </p>
+      <ul class="ip-list">
+        <li><span class="ip-icon">🏦</span>iM뱅킹 현장 전용 계좌 → 근로자 직접 이체</li>
+        <li><span class="ip-icon">✅</span>체불·횡령 리스크 구조적 제거</li>
+        <li><span class="ip-icon">📄</span>노무비 대장·이체증 자동 생성</li>
+        <li><span class="ip-icon">💰</span>자금 선투입 → 월 단위 정산</li>
+      </ul>
+      <div class="ip-divider"></div>
+      <a href="direct-pay.html" class="ip-btn ip-btn-outline">가다 직접지급 상세 보기 →</a>
+      <p class="ip-note">직접지급 구조 · 도입 절차 · 적법성 검토 포함</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── GADA UNIFIED ── -->
+<section id="gada-unified">
+  <div class="wrap gu-inner">
+    <div class="gu-top">
+      <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;">
+        <img src="gada-logo.png" alt="가다" style="height:28px;width:auto;display:block;filter:brightness(0) invert(1);">
+        <span class="gu-eyebrow" style="margin-bottom:0">통합 솔루션</span>
+      </div>
+      <h2 class="gu-title">두 이슈, <em>가다 하나</em>로<br />동시에 해결할 수 있습니다</h2>
+      <p class="gu-sub">
+        가다 오피스와 가다 직접지급을 따로 도입해도 되고,
+        가다 플랫폼 하나에서 두 솔루션을 함께 운영할 수도 있습니다.
+        통합 사용 시 이체 데이터가 신고 데이터로 자동 연동됩니다.
+      </p>
+    </div>
+
+    <div class="gu-compare-wrap">
+      <div class="gu-compare">
+
+        <!-- ROW 0: HEADER -->
+        <div class="gc-cell gc-th gc-col-lbl">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25)">기능 비교</span>
+        </div>
+        <div class="gc-cell gc-th gc-col-blue">
+          <div class="gc-logo">가다 오피스<span>4대보험 신고 솔루션</span></div>
+        </div>
+        <div class="gc-cell gc-th gc-col-fp">
+          <div class="gc-logo">가다 직접지급<span>임금 직접지급 시스템</span></div>
+        </div>
+        <div class="gc-cell gc-th gc-col-gada">
+          <span class="gc-rec-badge">추천 · 통합</span>
+          <div class="gc-logo">GADA 통합<span>두 이슈 한 번에 해결</span></div>
+        </div>
+
+        <!-- ROW 1 -->
+        <div class="gc-cell gc-col-lbl">4대보험 신고 자동화</div>
+        <div class="gc-cell gc-col-blue gc-yes">✓ 자동 처리</div>
+        <div class="gc-cell gc-col-fp gc-no">—</div>
+        <div class="gc-cell gc-col-gada gc-yes-g">✓ 자동 처리</div>
+
+        <!-- ROW 2 -->
+        <div class="gc-cell gc-col-lbl">국민연금·건강보험 분리 판단</div>
+        <div class="gc-cell gc-col-blue gc-yes">✓ 자동 분리</div>
+        <div class="gc-cell gc-col-fp gc-no">—</div>
+        <div class="gc-cell gc-col-gada gc-yes-g">✓ 자동 분리</div>
+
+        <!-- ROW 3 -->
+        <div class="gc-cell gc-col-lbl">사업장 합산 신고 처리</div>
+        <div class="gc-cell gc-col-blue gc-yes">✓ 자동 처리</div>
+        <div class="gc-cell gc-col-fp gc-no">—</div>
+        <div class="gc-cell gc-col-gada gc-yes-g">✓ 자동 처리</div>
+
+        <!-- ROW 4 -->
+        <div class="gc-cell gc-col-lbl">임금 직접지급 (전용계좌)</div>
+        <div class="gc-cell gc-col-blue gc-no">—</div>
+        <div class="gc-cell gc-col-fp gc-yes">✓ 전용계좌 직접이체</div>
+        <div class="gc-cell gc-col-gada gc-yes-g">✓ 전용계좌 직접이체</div>
+
+        <!-- ROW 5 -->
+        <div class="gc-cell gc-col-lbl">노무비 대장 자동 생성</div>
+        <div class="gc-cell gc-col-blue gc-no">—</div>
+        <div class="gc-cell gc-col-fp gc-yes">✓ 자동 생성</div>
+        <div class="gc-cell gc-col-gada gc-yes-g">✓ 자동 생성</div>
+
+        <!-- ROW 6 -->
+        <div class="gc-cell gc-col-lbl">자금 선투입 · 월 정산</div>
+        <div class="gc-cell gc-col-blue gc-no">—</div>
+        <div class="gc-cell gc-col-fp gc-yes">✓ 선투입 월정산</div>
+        <div class="gc-cell gc-col-gada gc-yes-g">✓ 선투입 월정산</div>
+
+        <!-- ROW 7: LAST -->
+        <div class="gc-cell gc-col-lbl gc-last">이체→신고 자동 연동</div>
+        <div class="gc-cell gc-col-blue gc-no gc-last">—</div>
+        <div class="gc-cell gc-col-fp gc-no gc-last">—</div>
+        <div class="gc-cell gc-col-gada gc-yes-g gc-last">✓ 완전 자동 연동</div>
+
+      </div>
+    </div>
+
+    <div class="gu-cta">
+      <a href="#" onclick="openInquiry('index');return false;" class="btn-gada-lg">가다 통합 솔루션 도입 문의 →</a>
+      <div class="gu-trust">
+        <span class="gt-item">✓ 법무법인·회계법인 적법성 검토 완료</span>
+        <span class="gt-item">✓ iM뱅킹 펌뱅킹 공식 제휴</span>
+        <span class="gt-item">✓ 1개 현장 PoC 즉시 가능</span>
+        <span class="gt-item">✓ 이체·신고 데이터 자동 연동</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FLOW ── -->
+<section id="flow">
+  <div class="wrap">
+    <p class="flow-eyebrow">GADA 통합 처리 흐름</p>
+    <h2 class="flow-title">임금 지급부터 보험 신고까지<br />하나의 흐름으로 연결됩니다</h2>
+    <p class="flow-sub">가다 직접지급이 근로자에게 이체하고, 그 기록을 가다 오피스가 받아 4대보험 신고를 자동 처리합니다.</p>
+    <div class="flow-wrap" style="margin-top:28px">
+      <div class="flow-row">
+        <div class="fn"><div class="fn-ico fi-gray">🏗️</div><div class="fn-lbl">건설사</div><div class="fn-sub">원도급사</div></div>
+        <div class="flow-arr">→</div>
+        <div class="fn fn-fp"><div class="fn-ico fi-fp">가다</div><div class="fn-lbl">가다 직접지급</div><div class="fn-sub">자금 선투입</div></div>
+        <div class="flow-arr">→</div>
+        <div class="fn"><div class="fn-ico fi-blue">🏦</div><div class="fn-lbl">전용계좌</div><div class="fn-sub">현장별 개설</div></div>
+        <div class="flow-arr">→</div>
+        <div class="fn"><div class="fn-ico fi-yellow">👷</div><div class="fn-lbl">근로자</div><div class="fn-sub">직접 이체</div></div>
+        <div class="flow-arr">→</div>
+        <div class="fn fn-gada"><div class="fn-ico fi-gada">가다</div><div class="fn-lbl">가다 오피스</div><div class="fn-sub">4대보험 자동 신고</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section id="cta">
+  <div class="wrap cta-inner">
+    <h2>지금 바로 시작하세요.<br /><em>가다가 두 이슈를 동시에 해결합니다.</em></h2>
+    <p>가다 오피스 + 가다 직접지급 통합 도입 또는 각 솔루션 단독 도입 모두 가능합니다.</p>
+    <div class="cta-btns">
+      <a href="#" onclick="openInquiry('index');return false;" class="btn-gada-cta">가다 통합 도입 문의하기 →</a>
+      <a href="tel:1661-0109" class="btn-outline-cta">📞 1661-0109</a>
+    </div>
+    <div class="cta-trust">
+      <span class="ct-item">✓ 가다 오피스 — 4대보험 신고 자동화</span>
+      <span class="ct-item">✓ 가다 직접지급 — 임금 직접지급</span>
+      <span class="ct-item">✓ 통합 시 이체→신고 자동 연동</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">
+      <img src="gada-logo.png" alt="가다" style="height:22px;width:auto;display:block;">
+      <span style="color:rgba(255,255,255,.35);font-weight:500;font-size:14px;">by WORKSMATE</span>
+    </div>
+    <div class="foot-info">
+      주식회사 웍스메이트 · 서울특별시 서초구 방배천로2길 27, 5층 (방배동, AP빌딩)<br />
+      대표전화: 1661-0109 · 이메일: contact@worksmate.co.kr · 대표이사: 김세원
+    </div>
+    <div class="foot-copy">© 2026 WORKSMATE Inc. All rights reserved.</div>
+  </div>
+</footer>
+
+<a href="#gada-unified" class="sticky-fab">✦ 가다 통합 솔루션 보기</a>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.querySelector('#nav').style.boxShadow = scrollY > 8 ? '0 2px 12px rgba(0,0,0,.07)' : 'none';
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.gc-cell, .fn').forEach(el => {
+    el.style.opacity='0'; el.style.transform='translateY(12px)'; el.style.transition='opacity .4s ease, transform .4s ease';
+    io.observe(el);
+  });
+</script>
+<script src="inquiry.js"></script>
+</body>
+</html>
