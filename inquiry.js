@@ -745,4 +745,15 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
   }
 
   function pad2bk(n) { return n < 10 ? '0' + n : '' + n; }
+
+  // onclick 속성에서 호출되는 함수들을 전역으로 노출
+  window.bkPrevMonth   = bkPrevMonth;
+  window.bkNextMonth   = bkNextMonth;
+  window.bkShowForm    = bkShowForm;
+  window.bkShowDate    = bkShowDate;
+  window.bkShowSlot    = bkShowSlot;
+  window.bkShowConfirm = bkShowConfirm;
+  window.bkSelectSlot  = bkSelectSlot;
+  window.bkConfirm     = bkConfirm;
+  window.bkSkip        = bkSkip;
 })();
