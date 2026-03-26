@@ -220,11 +220,13 @@
     #risk-cases { background: var(--bg); }
     .rc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
     .rc-card { background: #fff; border-radius: var(--r-lg); border: 1.5px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
-    .rc-num-bar { padding: 14px 22px 0; display: flex; align-items: center; gap: 10px; }
-    .rc-badge { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; }
-    .rcb-amber { background: var(--yellow-lt); color: #92500A; }
-    .rcb-red   { background: var(--red-lt);    color: var(--red); }
-    .rc-since  { font-size: 11px; font-weight: 600; color: var(--t3); }
+    .rc-num-bar { padding: 18px 22px 0; display: flex; align-items: center; gap: 10px; }
+    .rc-badge { font-size: 12px; font-weight: 900; letter-spacing: .06em; padding: 5px 14px; border-radius: 99px; display: inline-flex; align-items: center; gap: 5px; }
+    .rcb-amber { background: #FEF3C7; color: #92400E; border: 1.5px solid #F59E0B; }
+    .rcb-amber::before { content: '⚠'; font-size: 11px; }
+    .rcb-red   { background: #FEE2E2; color: #991B1B; border: 1.5px solid #EF4444; }
+    .rcb-red::before   { content: '🚨'; font-size: 11px; }
+    .rc-since  { display: none; }
 
     /* 원인 영역 */
     .rc-cause { padding: 16px 22px 14px; }
