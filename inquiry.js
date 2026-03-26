@@ -1,9 +1,9 @@
 /**
  * GADA 도입문의 모달
- * Google Apps Script 웹앱 URL을 아래에 설정하세요.
- * 배포 방법: apps-script.gs 파일 참고
+ * Supabase 설정: Project Settings → API → anon public key
  */
-var GADA_SCRIPT_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+var SUPABASE_URL  = 'https://evaddagjpjiekbhsmgxh.supabase.co';
+var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2YWRkYWdqcGppZWtiaHNtZ3hoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0ODc0MzYsImV4cCI6MjA5MDA2MzQzNn0.kC9rIBMvvScgfZyrlNhM6M7GKynQjagbJUN-VX6wmsM';
 
 (function () {
   /* ── CSS ─────────────────────────────────────────── */
@@ -309,35 +309,51 @@ var GADA_SCRIPT_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
     spinner.style.display = 'block';
     btnText.textContent = '전송 중...';
 
-    var params = new URLSearchParams({
-      companyType:  document.getElementById('inqCompanyType').value,
-      companyName:  document.getElementById('inqCompanyName').value.trim(),
-      contactName:  document.getElementById('inqContactName').value.trim(),
-      contactPhone: document.getElementById('inqContactPhone').value.trim(),
-      contactEmail: document.getElementById('inqContactEmail').value.trim(),
-      requirements: document.getElementById('inqRequirements').value.trim(),
-      source:       window.location.pathname || 'direct',
-      submittedAt:  new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
-    });
+    var payload = {
+      company_type:  document.getElementById('inqCompanyType').value,
+      company_name:  document.getElementById('inqCompanyName').value.trim(),
+      contact_name:  document.getElementById('inqContactName').value.trim(),
+      contact_phone: document.getElementById('inqContactPhone').value.trim(),
+      contact_email: document.getElementById('inqContactEmail').value.trim(),
+      requirements:  document.getElementById('inqRequirements').value.trim(),
+      source:        window.location.pathname || 'direct'
+    };
 
-    // Google Apps Script는 no-cors POST로 전송 (응답 확인 불가 → 낙관적 성공 처리)
-    fetch(GADA_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: params.toString()
-    }).then(function () {
-      showSuccess();
-    }).catch(function () {
-      // no-cors에서 catch는 발생하지 않으나, URL 미설정 시 대비
-      showSuccess();
-    });
-
-    // URL 미설정 시에도 UX 유지 (5초 후 자동 성공 처리)
-    if (GADA_SCRIPT_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
-      console.warn('[GADA] Apps Script URL이 설정되지 않았습니다. inquiry.js의 GADA_SCRIPT_URL을 업데이트하세요.');
+    if (SUPABASE_ANON === 'YOUR_SUPABASE_ANON_KEY_HERE') {
+      console.warn('[GADA] Supabase anon key가 설정되지 않았습니다. inquiry.js의 SUPABASE_ANON을 업데이트하세요.');
       setTimeout(showSuccess, 800);
+      return;
     }
+
+    fetch(SUPABASE_URL + '/rest/v1/rpc/submit_lead', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON,
+        'Authorization': 'Bearer ' + SUPABASE_ANON
+      },
+      body: JSON.stringify({
+        p_company_type:  payload.company_type,
+        p_company_name:  payload.company_name,
+        p_contact_name:  payload.contact_name,
+        p_contact_phone: payload.contact_phone,
+        p_contact_email: payload.contact_email,
+        p_requirements:  payload.requirements,
+        p_source:        payload.source
+      })
+    }).then(function (res) {
+      if (res.ok) {
+        showSuccess();
+      } else {
+        return res.text().then(function (txt) {
+          console.error('[GADA] Supabase 오류:', res.status, txt);
+          showSuccess(); // UX 유지
+        });
+      }
+    }).catch(function (err) {
+      console.error('[GADA] 네트워크 오류:', err);
+      showSuccess(); // UX 유지
+    });
   });
 
   function showSuccess() {

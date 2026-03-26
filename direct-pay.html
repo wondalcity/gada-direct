@@ -58,6 +58,13 @@
     .nav-links a:hover { color: var(--gada); }
     .nav-back { font-size: 13px; font-weight: 600; color: var(--t2); display: flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: var(--r); border: 1px solid var(--border); }
     .nav-back:hover { color: var(--gada); border-color: var(--gada); }
+    .nav-sub { display: flex; align-items: center; gap: 6px; }
+    .nav-sub-link { font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: var(--r); display: flex; align-items: center; gap: 5px; }
+    .nsl-blue { color: #0669F7; background: rgba(6,105,247,.1); }
+    .nsl-blue:hover { background: rgba(6,105,247,.18); }
+    .nsl-gada { color: #00A06A; background: rgba(0,184,122,.1); }
+    .nsl-gada:hover { background: rgba(0,184,122,.18); }
+    @media (max-width: 700px) { .nav-sub { display: none; } }
     .nav-cta { background: var(--gada); color: #fff; padding: 8px 18px; border-radius: var(--r); font-size: 13px; font-weight: 700; }
     .nav-cta:hover { background: var(--gada-d); }
     .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
@@ -209,7 +216,7 @@
     .btn-gada-cta:hover { background: var(--gada-d); box-shadow: 0 8px 24px rgba(0,184,122,.3); transform: translateY(-2px); }
     .btn-outline-cta { background: transparent; color: rgba(255,255,255,.75); border: 1.5px solid rgba(255,255,255,.25); padding: 14px 28px; font-size: 14px; border-radius: var(--r); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; transition: all .18s; }
     .btn-outline-cta:hover { border-color: rgba(255,255,255,.6); color: #fff; }
-    .cta-trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 24px; }
+    .cta-trust { display: none; }
     .ct-item { font-size: 13px; color: rgba(255,255,255,.4); font-weight: 600; display: flex; align-items: center; gap: 5px; }
 
     /* ── FOOTER ── */
@@ -260,6 +267,10 @@
     <li><a href="#features">핵심 기능</a></li>
     <li><a href="#legal">적법성 검토</a></li>
   </ul>
+  <div class="nav-sub">
+    <a href="pension.html" class="nav-sub-link nsl-blue">가다 오피스</a>
+    <a href="direct-pay.html" class="nav-sub-link nsl-gada">가다 직접지급</a>
+  </div>
   <a href="#" onclick="openInquiry('direct-pay');return false;" class="nav-cta">도입 문의</a>
   <div class="ham" id="hamBtn" onclick="toggleNav()"><span></span><span></span><span></span></div>
 </nav>
@@ -524,27 +535,24 @@
   <div class="wrap">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
       <img src="gada-logo.png" alt="가다" style="height:26px;width:auto;display:block;filter:brightness(0) invert(1);">
-      <p style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gada);">통합 솔루션</p>
+      <p style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gada);">가다 솔루션</p>
     </div>
-    <h2 style="font-size:clamp(24px,3.2vw,38px);font-weight:900;color:#fff;line-height:1.2;letter-spacing:-.03em;margin-bottom:12px;">이슈 ①②를 <span style="color:var(--gada)">가다</span> 하나로<br />동시에 해결합니다</h2>
-    <p style="font-size:15px;color:rgba(255,255,255,.55);line-height:1.85;max-width:520px;margin-bottom:28px;">가다 직접지급과 가다 오피스(4대보험)를 함께 도입하면 이체 데이터가 신고 데이터로 자동 연동됩니다.</p>
+    <h2 style="font-size:clamp(24px,3.2vw,38px);font-weight:900;color:#fff;line-height:1.2;letter-spacing:-.03em;margin-bottom:12px;">건설사 노무 이슈,<br /><span style="color:var(--gada)">가다</span>가 해결합니다</h2>
+    <p style="font-size:15px;color:rgba(255,255,255,.55);line-height:1.85;max-width:520px;margin-bottom:28px;">임금 직접지급은 가다 직접지급이, 4대보험 신고 자동화는 가다 오피스가 각각 해결합니다. 각각 독립적으로 도입할 수 있습니다.</p>
     <div class="gu-card-grid">
       <div class="gu-card">
-        <div class="gu-card-issue">이슈 ②</div>
         <div class="gu-card-ttl">임금 직접지급</div>
         <div class="gu-card-desc">근로자 직접 이체 · 노무비 대장 자동화 · 법적 준수</div>
         <span class="gu-card-badge gcb-gada">가다 직접지급</span>
       </div>
       <div class="gu-card">
-        <div class="gu-card-issue">이슈 ①</div>
         <div class="gu-card-ttl">4대보험 신고 자동화</div>
-        <div class="gu-card-desc">이체 기록 기반 자동 판단 · 합산 신고 자동 처리</div>
+        <div class="gu-card-desc">국민연금·건강보험 자동 판단 · 합산 신고 자동 처리</div>
         <span class="gu-card-badge gcb-blue">가다 오피스</span>
       </div>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--gada);color:#fff;padding:13px 24px;border-radius:10px;font-size:14px;font-weight:800;">GADA 통합 솔루션 보기 →</a>
-      <a href="pension.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.75);border:1.5px solid rgba(255,255,255,.15);padding:12px 20px;border-radius:10px;font-size:13px;font-weight:700;">이슈 ① 4대보험 자세히 보기</a>
+      <a href="https://1gada.com/office" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.75);border:1.5px solid rgba(255,255,255,.15);padding:12px 20px;border-radius:10px;font-size:13px;font-weight:700;">가다 오피스 알아보기 →</a>
     </div>
   </div>
 </section>

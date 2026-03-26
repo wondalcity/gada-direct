@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>가다 — 건설사 노무 리스크 통합 솔루션</title>
+  <title>가다 — 건설사 노무 이슈 해결 솔루션</title>
   <link rel="stylesheet" as="style" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <style>
@@ -91,12 +91,8 @@
     .ip-dark .ip-glow { background: var(--blue); }
     .ip-inner { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
     .ip-num { font-size: 80px; font-weight: 900; color: rgba(255,255,255,.07); line-height: 1; margin-bottom: -8px; letter-spacing: -.05em; }
-    .ip-issue-label { display: inline-block; margin-bottom: 10px; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.45); }
-    .ip-solution-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 5px 14px; border-radius: 99px;
-      font-size: 13px; font-weight: 900; margin-bottom: 18px; align-self: flex-start;
-    }
+    .ip-issue-label { display: none; }
+    .ip-solution-badge { display: none; }
     .isb-blue { background: rgba(255,255,255,.2); color: #fff; }
     .isb-fp   { background: var(--yellow); color: var(--dark); }
     .ip-title { font-size: clamp(20px, 2.2vw, 28px); font-weight: 900; color: #fff; line-height: 1.25; letter-spacing: -.02em; margin-bottom: 16px; }
@@ -112,7 +108,7 @@
     .ip-btn-wh:hover { box-shadow: 0 6px 20px rgba(0,0,0,.18); transform: translateY(-1px); }
     .ip-btn-outline { background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.25); color: #fff; }
     .ip-btn-outline:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.5); }
-    .ip-note { margin-top: 12px; font-size: 12px; color: rgba(255,255,255,.3); font-weight: 600; }
+    .ip-note { display: none; }
 
     /* ── GADA UNIFIED ── */
     #gada-unified {
@@ -134,7 +130,7 @@
     /* Flat grid — all 32 cells share the same row tracks, guaranteeing alignment */
     .gu-compare {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1.15fr;
+      grid-template-columns: 1.5fr 1fr 1fr;
       border-radius: var(--r-lg); overflow: hidden;
       box-shadow: 0 8px 40px rgba(0,0,0,.35);
       min-width: 660px;
@@ -151,15 +147,13 @@
     .gc-col-lbl  { background: rgba(0,0,0,.2);   justify-content: flex-start; padding-left: 22px; color: rgba(255,255,255,.55); font-weight: 700; }
     .gc-col-blue { background: rgba(255,255,255,.04); }
     .gc-col-fp   { background: rgba(255,255,255,.04); }
-    .gc-col-gada { background: rgba(0,184,122,.09); border-left: 2px solid rgba(0,184,122,.35); border-right: 2px solid rgba(0,184,122,.35); }
+    .gc-col-gada { display: none; }
     /* Header backgrounds */
     .gc-th.gc-col-lbl  { background: rgba(255,255,255,.04); justify-content: flex-end; padding-bottom: 18px; }
     .gc-th.gc-col-blue { background: var(--blue); }
     .gc-th.gc-col-fp   { background: var(--dark2); }
-    .gc-th.gc-col-gada { background: linear-gradient(160deg, #00CC88 0%, var(--gada) 100%); border-top: 2px solid var(--gada); }
     /* Last row — remove bottom border */
     .gc-last { border-bottom: none; }
-    .gc-last.gc-col-gada { border-bottom: 2px solid rgba(0,184,122,.35); }
 
     .gc-logo { font-size: 15px; font-weight: 900; color: #fff; letter-spacing: -.02em; line-height: 1.2; }
     .gc-logo span { opacity: .65; font-size: 11px; font-weight: 700; display: block; margin-top: 3px; letter-spacing: .04em; }
@@ -171,10 +165,10 @@
     .gu-cta { text-align: center; }
     .btn-gada-lg { background: var(--gada); color: #fff; padding: 16px 36px; font-size: 16px; font-weight: 800; border-radius: var(--r-lg); box-shadow: 0 4px 20px rgba(0,184,122,.35); display: inline-flex; align-items: center; gap: 8px; transition: all .18s; }
     .btn-gada-lg:hover { background: var(--gada-d); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,184,122,.4); }
-    .gu-trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
+    .gu-trust { display: none; }
     .gt-item { font-size: 13px; color: rgba(255,255,255,.4); font-weight: 600; display: flex; align-items: center; gap: 5px; }
     @media (max-width: 700px) {
-      .gu-compare { min-width: 560px; grid-template-columns: 1.3fr 0.9fr 0.9fr 1fr; }
+      .gu-compare { min-width: 400px; grid-template-columns: 1.3fr 1fr 1fr; }
       .gc-cell { font-size: 12px; padding: 12px 10px; }
       .gc-col-lbl { padding-left: 12px; }
     }
@@ -212,7 +206,7 @@
     .btn-gada-cta:hover { background: var(--gada-d); box-shadow: 0 8px 24px rgba(0,184,122,.3); transform: translateY(-2px); }
     .btn-outline-cta { background: transparent; color: rgba(255,255,255,.7); border: 1.5px solid rgba(255,255,255,.2); padding: 14px 28px; font-size: 14px; border-radius: var(--r); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; transition: all .18s; }
     .btn-outline-cta:hover { border-color: rgba(255,255,255,.5); color: #fff; }
-    .cta-trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 24px; }
+    .cta-trust { display: none; }
     .ct-item { font-size: 13px; color: rgba(255,255,255,.4); font-weight: 600; display: flex; align-items: center; gap: 5px; }
 
     /* ── FOOTER ── */
@@ -256,7 +250,7 @@
     <a href="pension.html" class="nav-sub-link nsl-blue">가다 오피스</a>
     <a href="direct-pay.html" class="nav-sub-link nsl-dark">가다 직접지급</a>
   </div>
-  <a href="#gada-unified" class="nav-cta">통합 솔루션 보기</a>
+  <a href="#gada-unified" class="nav-cta">가다 솔루션 보기</a>
 </nav>
 
 <!-- ── HERO ── -->
@@ -264,26 +258,23 @@
   <div class="hero-glow g1"></div>
   <div class="hero-glow g2"></div>
   <div class="wrap hero-inner">
-    <div class="hero-badge">건설사 노무 리스크 통합 솔루션 — GADA</div>
+    <div class="hero-badge">건설사 노무 이슈 해결 — GADA</div>
     <h1 class="hero-h1">
       건설사의 두 가지 노무 이슈,<br />
-      <span class="acc-g">가다 하나로</span> 해결합니다
+      <span class="acc-g">가다가</span> 해결합니다
     </h1>
     <p class="hero-sub">
       <strong>4대보험 신고 자동화</strong>는 가다 오피스가,<br />
-      <strong>임금 직접지급</strong>은 가다 직접지급이 각각 해결합니다.<br />
-      가다에서는 두 이슈를 한 번에 처리할 수 있습니다.
+      <strong>임금 직접지급</strong>은 가다 직접지급이 각각 해결합니다.
     </p>
     <div class="hero-products">
       <span class="prod-tag pt-blue">가다 오피스</span>
-      <span class="prod-sep">+</span>
+      <span class="prod-sep">·</span>
       <span class="prod-tag pt-fp">가다 직접지급</span>
-      <span style="color:rgba(255,255,255,.35);margin:0 4px">=</span>
-      <span style="color:rgba(255,255,255,.85);font-weight:800">GADA 통합 솔루션</span>
     </div>
     <div class="hero-btns">
-      <a href="#gada-unified" class="btn btn-gada">가다 통합 솔루션 보기 ↓</a>
-      <a href="#issues" class="btn btn-ghost">이슈별 솔루션 확인</a>
+      <a href="#gada-unified" class="btn btn-gada">가다 솔루션 알아보기 ↓</a>
+      <a href="#issues" class="btn btn-ghost">이슈별 상세 확인</a>
     </div>
   </div>
 </section>
@@ -311,7 +302,7 @@
         <li><span class="ip-icon">💸</span>오신고 1건당 최대 160,420원 손실 방지</li>
       </ul>
       <div class="ip-divider"></div>
-      <a href="pension.html" class="ip-btn ip-btn-wh">가다 오피스 상세 보기 →</a>
+      <a href="https://1gada.com/office" target="_blank" class="ip-btn ip-btn-wh">가다 오피스 상세 보기 →</a>
       <p class="ip-note">시행 일정 · 기준 변경 · 리스크 케이스 포함</p>
     </div>
   </div>
@@ -349,13 +340,13 @@
     <div class="gu-top">
       <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;">
         <img src="gada-logo.png" alt="가다" style="height:28px;width:auto;display:block;filter:brightness(0) invert(1);">
-        <span class="gu-eyebrow" style="margin-bottom:0">통합 솔루션</span>
+        <span class="gu-eyebrow" style="margin-bottom:0">가다 솔루션</span>
       </div>
-      <h2 class="gu-title">두 이슈, <em>가다 하나</em>로<br />동시에 해결할 수 있습니다</h2>
+      <h2 class="gu-title">건설사 노무 이슈,<br /><em>가다</em>가 해결합니다</h2>
       <p class="gu-sub">
-        가다 오피스와 가다 직접지급을 따로 도입해도 되고,
-        가다 플랫폼 하나에서 두 솔루션을 함께 운영할 수도 있습니다.
-        통합 사용 시 이체 데이터가 신고 데이터로 자동 연동됩니다.
+        4대보험 신고 자동화는 <strong style="color:rgba(255,255,255,.85)">가다 오피스</strong>가,
+        임금 직접지급은 <strong style="color:rgba(255,255,255,.85)">가다 직접지급</strong>이 해결합니다.
+        각각 독립적으로 도입할 수 있습니다.
       </p>
     </div>
 
@@ -423,7 +414,7 @@
     </div>
 
     <div class="gu-cta">
-      <a href="#" onclick="openInquiry('index');return false;" class="btn-gada-lg">가다 통합 솔루션 도입 문의 →</a>
+      <a href="#" onclick="openInquiry('index');return false;" class="btn-gada-lg">도입 문의하기 →</a>
       <div class="gu-trust">
         <span class="gt-item">✓ 법무법인·회계법인 적법성 검토 완료</span>
         <span class="gt-item">✓ iM뱅킹 펌뱅킹 공식 제휴</span>
@@ -437,7 +428,7 @@
 <!-- ── FLOW ── -->
 <section id="flow">
   <div class="wrap">
-    <p class="flow-eyebrow">GADA 통합 처리 흐름</p>
+    <p class="flow-eyebrow">가다 처리 흐름</p>
     <h2 class="flow-title">임금 지급부터 보험 신고까지<br />하나의 흐름으로 연결됩니다</h2>
     <p class="flow-sub">가다 직접지급이 근로자에게 이체하고, 그 기록을 가다 오피스가 받아 4대보험 신고를 자동 처리합니다.</p>
     <div class="flow-wrap" style="margin-top:28px">
@@ -459,10 +450,10 @@
 <!-- ── CTA ── -->
 <section id="cta">
   <div class="wrap cta-inner">
-    <h2>지금 바로 시작하세요.<br /><em>가다가 두 이슈를 동시에 해결합니다.</em></h2>
-    <p>가다 오피스 + 가다 직접지급 통합 도입 또는 각 솔루션 단독 도입 모두 가능합니다.</p>
+    <h2>지금 바로 시작하세요.<br /><em>가다가 해결합니다.</em></h2>
+    <p>가다 오피스, 가다 직접지급 각각 독립적으로 도입 가능합니다.</p>
     <div class="cta-btns">
-      <a href="#" onclick="openInquiry('index');return false;" class="btn-gada-cta">가다 통합 도입 문의하기 →</a>
+      <a href="#" onclick="openInquiry('index');return false;" class="btn-gada-cta">도입 문의하기 →</a>
       <a href="tel:1661-0109" class="btn-outline-cta">📞 1661-0109</a>
     </div>
     <div class="cta-trust">
@@ -487,7 +478,7 @@
   </div>
 </footer>
 
-<a href="#gada-unified" class="sticky-fab">✦ 가다 통합 솔루션 보기</a>
+<a href="#gada-unified" class="sticky-fab">✦ 가다 솔루션 보기</a>
 
 <script>
   window.addEventListener('scroll', () => {
