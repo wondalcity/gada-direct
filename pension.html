@@ -133,23 +133,25 @@
 
     /* ── TIMELINE ── */
     #timeline { background: #fff; }
-    .tl-row { display: grid; grid-template-columns: 1fr 44px 1fr; align-items: start; margin-top: 44px; }
-    .tl-card { background: #fff; border-radius: var(--r-lg); padding: 28px; border: 1.5px solid var(--border); box-shadow: var(--shadow); }
+    .tl-row { display: grid; grid-template-columns: 1fr 44px 1fr; align-items: stretch; margin-top: 44px; }
+    .tl-card { background: #fff; border-radius: var(--r-lg); padding: 28px; border: 1.5px solid var(--border); box-shadow: var(--shadow); display: flex; flex-direction: column; }
     .tl-card-old  { border-top: 3px solid var(--t3); }
     .tl-card-curr { border-top: 3px solid var(--blue); }
-    .tl-status { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 800; letter-spacing: .05em; margin-bottom: 14px; }
+    .tl-status { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 800; letter-spacing: .05em; margin-bottom: 14px; align-self: flex-start; }
     .st-done { background: var(--bg); color: var(--t3); }
     .st-live { background: var(--blue-lt); color: var(--blue); }
     .st-live .dot2 { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); animation: blink 1.5s infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
     .tl-date { font-size: 34px; font-weight: 900; letter-spacing: -.04em; color: var(--t1); margin-bottom: 8px; }
     .tl-card-curr .tl-date { color: var(--blue); }
-    .tl-ttl  { font-size: 17px; font-weight: 800; margin-bottom: 10px; }
-    .tl-body { font-size: 15px; color: var(--t2); line-height: 1.8; }
-    .tl-foot { display: inline-block; margin-top: 18px; padding: 6px 14px; border-radius: 99px; font-size: 13px; font-weight: 800; }
+    .tl-ttl  { font-size: 17px; font-weight: 800; margin-bottom: 12px; }
+    .tl-body { font-size: 14px; color: var(--t2); line-height: 1.75; flex: 1; }
+    .tl-body p { margin: 0 0 10px; }
+    .tl-body p:last-child { margin-bottom: 0; }
+    .tl-foot { display: inline-block; margin-top: 20px; padding: 6px 14px; border-radius: 99px; font-size: 13px; font-weight: 800; align-self: flex-start; }
     .tl-card-old  .tl-foot { background: var(--bg); color: var(--t3); }
     .tl-card-curr .tl-foot { background: var(--blue-lt); color: var(--blue); }
-    .tl-mid { display: flex; align-items: center; justify-content: center; padding-top: 48px; }
+    .tl-mid { display: flex; align-items: center; justify-content: center; }
     .tl-arr { width: 36px; height: 36px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; flex-shrink: 0; box-shadow: 0 4px 12px rgba(6,105,247,.25); }
     .warn-strip { display: none; }
     .ws-ico { font-size: 20px; flex-shrink: 0; }
@@ -473,8 +475,8 @@
         <div class="tl-date">2025.07.01</div>
         <div class="tl-ttl">국민연금 판단 기준 변경</div>
         <div class="tl-body">
-          '2개월 합산' 방식이 폐지되고 <strong>매월 말일 단독 판단</strong>으로 변경.<br /><br />
-          국민연금·건강보험 기준이 분리되어 <strong>같은 근로자도 보험별로 대상 여부가 달라집니다.</strong>
+          <p>'2개월 합산' 방식이 폐지되고 <strong>매월 말일 단독 판단</strong>으로 변경.</p>
+          <p>국민연금·건강보험 기준이 분리되어 <strong>같은 근로자도 보험별로 대상 여부가 달라집니다.</strong></p>
         </div>
         <span class="tl-foot">이미 적용 중</span>
       </div>
@@ -484,8 +486,8 @@
         <div class="tl-date">2026.01.01</div>
         <div class="tl-ttl">사업장 합산 신고 의무화</div>
         <div class="tl-body">
-          현장별 8일 미만이어도 <strong>사업장 전 현장을 합산해 재판단</strong>하는 것이 법적 의무.<br /><br />
-          복수 현장 건설사는 현장별 판단만으론 <strong>법 위반</strong>입니다.
+          <p>현장별 8일 미만이어도 <strong>사업장 전 현장을 합산해 재판단</strong>하는 것이 법적 의무.</p>
+          <p>복수 현장 건설사는 현장별 판단만으론 <strong>법 위반</strong>입니다.</p>
         </div>
         <span class="tl-foot">필수 대응 사항</span>
       </div>
