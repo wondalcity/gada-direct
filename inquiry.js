@@ -659,7 +659,7 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
     document.getElementById('bkSlotNext').disabled = true;
     bkShow('bkStepSlot');
 
-    fetch(BOOKING_URL + '?action=slots&date=' + bk.selDate)
+    fetch(BOOKING_URL + '?action=slots&date=' + bk.selDate, { redirect: 'follow' })
       .then(function (r) { return r.json(); })
       .then(function (res) {
         var wrap = document.getElementById('bkSlotsWrap');
@@ -702,7 +702,7 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
 
     fetch(BOOKING_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
       body: JSON.stringify({
         action:   'book',
         date:     bk.selDate,
