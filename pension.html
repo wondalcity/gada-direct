@@ -34,7 +34,7 @@
     .subtitle { font-size: 16px; color: var(--t2); margin-top: 14px; line-height: 1.85; }
 
     /* ── TOP BAR ── */
-    #top-bar { display: none; }
+    #top-bar { background: var(--dark); padding: 10px 24px; }
     #top-bar p { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.7); text-align: center; line-height: 1.7; }
     #top-bar .hl { background: var(--yellow); color: var(--dark); border-radius: 4px; padding: 1px 7px; font-weight: 800; margin: 0 1px; }
 
@@ -53,13 +53,17 @@
     .nav-links a { font-size: 14px; font-weight: 600; color: var(--t2); }
     .nav-links a:hover { color: var(--blue); }
     .nav-back { display: none; }
-    .nav-sub { display: flex; align-items: center; gap: 6px; }
-    .nav-sub-link { font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: var(--r); display: flex; align-items: center; gap: 5px; }
-    .nsl-blue { color: var(--blue); background: var(--blue-lt); }
-    .nsl-blue:hover { background: #D6E8FF; }
-    .nsl-gada { color: #00A06A; background: rgba(0,184,122,.1); }
-    .nsl-gada:hover { background: rgba(0,184,122,.18); }
-    @media (max-width: 700px) { .nav-sub { display: none; } }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-btn { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 700; color: var(--t2); padding: 6px 10px; border-radius: var(--r); cursor: pointer; background: none; border: none; font-family: inherit; }
+    .nav-dropdown-btn:hover { color: var(--t1); background: var(--bg); }
+    .nav-dropdown-btn svg { transition: transform .2s; }
+    .nav-dropdown:hover .nav-dropdown-btn svg { transform: rotate(180deg); }
+    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid var(--border); border-radius: var(--r); box-shadow: 0 8px 24px rgba(0,0,0,.1); min-width: 170px; padding: 8px; z-index: 1000; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: flex; flex-direction: column; gap: 2px; }
+    .ndm-link { padding: 10px 12px; border-radius: 8px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+    .ndm-link:hover { background: var(--bg); }
+    .ndm-blue { color: var(--blue); }
+    .ndm-gada { color: var(--gada); }
     .nav-cta { background: var(--blue); color: #fff; padding: 8px 18px; border-radius: var(--r); font-size: 13px; font-weight: 700; }
     .nav-cta:hover { background: var(--blue-d); }
     .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
@@ -310,7 +314,6 @@
     .nav-cta-mobile { display: none; }
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .nav-sub { display: none; }
       .ham { display: flex; }
       .nav-cta { display: none; }
       .nav-cta-mobile { display: flex; align-items: center; font-size: 12px; font-weight: 800; background: var(--blue); color: #fff; padding: 7px 14px; border-radius: var(--r); }
@@ -375,9 +378,8 @@
 
 <nav id="nav">
   <a href="index.html" class="nav-back">← 메인으로</a>
-  <a href="index.html" class="nav-brand" style="margin-left:8px;gap:6px">
-    <img src="gada-logo.png" alt="가다" style="height:24px;width:auto;display:block;">
-    <span style="font-size:15px;font-weight:700;color:var(--t2);letter-spacing:-.01em;">오피스</span>
+  <a href="index.html" class="nav-brand">
+    <img src="gada-logo.png" alt="가다" style="height:28px;width:auto;display:block;">
   </a>
   <div class="nav-sp"></div>
   <ul class="nav-links">
@@ -385,9 +387,12 @@
     <li><a href="#risk-cases">리스크 케이스</a></li>
     <li><a href="#solution">해결 방법</a></li>
   </ul>
-  <div class="nav-sub">
-    <a href="pension.html" class="nav-sub-link nsl-blue">가다 오피스</a>
-    <a href="direct-pay.html" class="nav-sub-link nsl-gada">가다 직접지급</a>
+  <div class="nav-dropdown">
+    <button class="nav-dropdown-btn">제품 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="nav-dropdown-menu">
+      <a href="pension.html" class="ndm-link ndm-blue">🔵 가다 오피스</a>
+      <a href="direct-pay.html" class="ndm-link ndm-gada">🟢 가다 직접지급</a>
+    </div>
   </div>
   <a href="#" onclick="openInquiry('pension');return false;" class="nav-cta">도입 문의</a>
   <a href="#" onclick="openInquiry('pension');return false;" class="nav-cta-mobile">도입 문의</a>
@@ -395,13 +400,8 @@
 </nav>
 
 <div id="mobile-nav">
-  <div style="padding:8px 14px 4px;font-size:11px;font-weight:800;color:rgba(0,0,0,.3);letter-spacing:.08em;">제품</div>
   <a href="pension.html" class="mnav-link" style="font-weight:800;color:var(--blue);" onclick="toggleNav()">가다 오피스</a>
   <a href="direct-pay.html" class="mnav-link" style="font-weight:800;color:var(--gada);" onclick="toggleNav()">가다 직접지급</a>
-  <div style="height:1px;background:var(--border);margin:8px 14px;"></div>
-  <a href="#timeline" class="mnav-link" onclick="toggleNav()">신고 기준 변경</a>
-  <a href="#risk-cases"   class="mnav-link" onclick="toggleNav()">리스크 케이스</a>
-  <a href="#solution"     class="mnav-link" onclick="toggleNav()">해결 방법</a>
   <a href="#" onclick="toggleNav();openInquiry('pension');return false;" class="btn btn-wh" style="width:100%;margin-top:12px;padding:16px;justify-content:center">도입 문의하기 →</a>
 </div>
 
