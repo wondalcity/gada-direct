@@ -439,11 +439,10 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
   });
 
   // URL 해시 #inquiry 또는 ?inquiry 로 접근 시 자동 오픈
-  window.addEventListener('load', function () {
-    if (location.hash === '#inquiry' || location.search.indexOf('inquiry') !== -1) {
-      setTimeout(function () { openInquiry(location.pathname); }, 300);
-    }
-  });
+  // (스크립트가 body 하단 로드 → DOM 이미 준비됨, 즉시 실행)
+  if (location.hash === '#inquiry' || location.search.indexOf('inquiry') !== -1) {
+    setTimeout(function () { openInquiry(location.pathname); }, 300);
+  }
 
   function clearErrors() {
     ['f-type', 'f-company', 'f-name', 'f-phone'].forEach(function (id) {
