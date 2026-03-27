@@ -57,17 +57,16 @@
     .nav-links { display: none; }
     .nav-links a { font-size: 14px; font-weight: 600; color: var(--t2); }
     .nav-links a:hover { color: var(--gada); }
-    .nav-back { font-size: 13px; font-weight: 600; color: var(--t2); display: flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: var(--r); border: 1px solid var(--border); }
-    .nav-back:hover { color: var(--gada); border-color: var(--gada); }
+    .nav-back { display: none; }
     .nav-sub { display: flex; align-items: center; gap: 6px; }
     .nav-sub-link { font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: var(--r); display: flex; align-items: center; gap: 5px; }
     .nsl-blue { color: #0669F7; background: rgba(6,105,247,.1); }
     .nsl-blue:hover { background: rgba(6,105,247,.18); }
     .nsl-gada { color: #00A06A; background: rgba(0,184,122,.1); }
     .nsl-gada:hover { background: rgba(0,184,122,.18); }
-    @media (max-width: 700px) { .nav-sub { display: none; } }
     .nav-cta { background: var(--gada); color: #fff; padding: 8px 18px; border-radius: var(--r); font-size: 13px; font-weight: 700; }
     .nav-cta:hover { background: var(--gada-d); }
+    .nav-cta-mobile { display: none; }
     .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .ham span { width: 22px; height: 2px; background: var(--t1); border-radius: 2px; transition: all .22s; }
     .ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -236,7 +235,10 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .nav-sub { display: none; }
       .ham { display: flex; }
+      .nav-cta { display: none; }
+      .nav-cta-mobile { display: flex; align-items: center; font-size: 12px; font-weight: 800; background: var(--gada); color: #fff; padding: 7px 14px; border-radius: var(--r); }
       section { padding: 52px 0; }
       .wrap, .wrap-sm { padding: 0 16px; }
       .hero-stats { grid-template-columns: 1fr 1fr; }
@@ -279,10 +281,15 @@
     <a href="direct-pay.html" class="nav-sub-link nsl-gada">가다 직접지급</a>
   </div>
   <a href="#" onclick="openInquiry('direct-pay');return false;" class="nav-cta">도입 문의</a>
+  <a href="#" onclick="openInquiry('direct-pay');return false;" class="nav-cta-mobile">도입 문의</a>
   <div class="ham" id="hamBtn" onclick="toggleNav()"><span></span><span></span><span></span></div>
 </nav>
 
 <div id="mobile-nav">
+  <div style="padding:8px 14px 4px;font-size:11px;font-weight:800;color:rgba(0,0,0,.3);letter-spacing:.08em;">제품</div>
+  <a href="pension.html" class="mnav-link" style="font-weight:800;color:var(--blue);" onclick="toggleNav()">가다 오피스</a>
+  <a href="direct-pay.html" class="mnav-link" style="font-weight:800;color:var(--gada);" onclick="toggleNav()">가다 직접지급</a>
+  <div style="height:1px;background:var(--border);margin:8px 14px;"></div>
   <a href="#problem"      class="mnav-link" onclick="toggleNav()">리스크</a>
   <a href="#solution"     class="mnav-link" onclick="toggleNav()">지급 흐름</a>
   <a href="#features"     class="mnav-link" onclick="toggleNav()">핵심 기능</a>
