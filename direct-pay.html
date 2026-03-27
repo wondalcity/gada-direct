@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>임금 직접지급 | 가다 직접지급</title>
   <link rel="stylesheet" as="style" crossorigin
@@ -109,7 +110,8 @@
     /* ── PROBLEM ── */
     #problem { background: var(--bg); }
     .prob-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 36px; }
-    .prob-card { background: #fff; border-radius: var(--r-lg); padding: 28px; border: 1.5px solid var(--border); box-shadow: var(--shadow); border-top: 4px solid var(--dark); }
+    .prob-card { background: #fff; border-radius: var(--r-lg); padding: 28px; border: 1.5px solid var(--border); box-shadow: var(--shadow); border-top: 4px solid var(--dark); transition: transform .2s, box-shadow .2s, border-color .2s; }
+    .prob-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.10); border-color: var(--dark); }
     .prob-ico { font-size: 32px; margin-bottom: 14px; }
     .prob-card h3 { font-size: 16px; font-weight: 900; color: var(--t1); margin-bottom: 10px; }
     .prob-card p  { font-size: 14px; color: var(--t2); line-height: 1.8; }
@@ -167,8 +169,8 @@
     /* ── FEATURES ── */
     #features { background: #fff; }
     .feat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-top: 36px; }
-    .feat-card { background: var(--bg); border-radius: var(--r-lg); padding: 26px; border: 1.5px solid var(--border); transition: border-color .2s, background .2s; }
-    .feat-card:hover { border-color: var(--gada); background: #fff; }
+    .feat-card { background: var(--bg); border-radius: var(--r-lg); padding: 26px; border: 1.5px solid var(--border); transition: border-color .2s, background .2s, transform .2s, box-shadow .2s; }
+    .feat-card:hover { border-color: var(--gada); background: #fff; transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,184,122,.10); }
     .feat-ico { width: 44px; height: 44px; border-radius: var(--r); background: var(--gada-lt); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px; }
     .feat-card h3 { font-size: 16px; font-weight: 900; color: var(--t1); margin-bottom: 9px; }
     .feat-card p  { font-size: 14px; color: var(--t2); line-height: 1.8; }
@@ -187,7 +189,8 @@
     /* ── LEGAL ── */
     #legal { background: var(--dark); padding: 64px 0; }
     .legal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
-    .legal-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09); border-radius: var(--r-lg); padding: 26px; }
+    .legal-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09); border-radius: var(--r-lg); padding: 26px; transition: background .2s, border-color .2s, transform .2s; }
+    .legal-card:hover { background: rgba(255,255,255,.08); border-color: var(--gada); transform: translateY(-3px); }
     .legal-tag  { font-size: 11px; font-weight: 800; letter-spacing: .1em; color: rgba(255,255,255,.25); margin-bottom: 8px; }
     .legal-ttl  { font-size: 19px; font-weight: 900; color: #fff; margin-bottom: 12px; }
     .legal-card p { font-size: 15px; color: rgba(255,255,255,.5); line-height: 1.85; }
@@ -196,7 +199,8 @@
     /* ── GADA UNIFIED ── */
     #gada-unified { background: linear-gradient(135deg, #003D26 0%, #005C3A 50%, #004D30 100%); padding: 72px 0; }
     .gu-card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px; max-width: 640px; }
-    .gu-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 20px 22px; }
+    .gu-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 20px 22px; transition: background .2s, border-color .2s, transform .2s; }
+    .gu-card:hover { background: rgba(255,255,255,.11); border-color: var(--gada); transform: translateY(-3px); }
     .gu-card-issue { font-size: 12px; font-weight: 800; color: rgba(255,255,255,.35); letter-spacing: .08em; margin-bottom: 8px; }
     .gu-card-ttl { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 6px; }
     .gu-card-desc { font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.7; }
@@ -245,6 +249,9 @@
     @media (max-width: 600px) {
       .hero-btns { flex-direction: column; }
       .cta-btns  { flex-direction: column; align-items: center; }
+    }
+    @media (hover: none) {
+      .prob-card:hover, .feat-card:hover, .legal-card:hover, .gu-card:hover { transform: none; box-shadow: var(--shadow); }
     }
   </style>
 </head>
@@ -301,6 +308,7 @@
     <div class="hero-chips">
       <span class="chip chip-wh">🚨 근로기준법 제43조 위반 소지</span>
       <span class="chip chip-yellow">체불 시 원도급 연대 책임</span>
+      <span class="chip chip-gada">📅 2026.03.30 시행</span>
     </div>
     <div class="hero-btns">
       <a href="#" onclick="openInquiry('direct-pay');return false;" class="btn btn-gada">도입 문의</a>
