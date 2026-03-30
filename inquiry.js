@@ -328,9 +328,20 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
               </div>
             </div>
 
+            <div class="inq-field" id="f-scale">
+              <label>현장 규모</label>
+              <select name="siteScale" id="inqSiteScale">
+                <option value="">선택해주세요</option>
+                <option value="소규모 (30명 미만)">소규모 (30명 미만)</option>
+                <option value="중규모 (30~100명)">중규모 (30~100명)</option>
+                <option value="대규모 (100명 초과)">대규모 (100명 초과)</option>
+                <option value="잘 모름">잘 모름</option>
+              </select>
+            </div>
+
             <div class="inq-field" id="f-req">
-              <label>요구사항 / 현장 규모</label>
-              <textarea name="requirements" id="inqRequirements" placeholder="예: 하도급 현장 3개소, 일용직 50명 규모. 직접지급 시스템 도입 검토 중"></textarea>
+              <label>요구사항</label>
+              <textarea name="requirements" id="inqRequirements" placeholder="예: 직접지급 시스템 도입 검토 중, 4대보험 자동화 필요"></textarea>
             </div>
 
             <button type="submit" class="inq-submit" id="inqSubmitBtn">
@@ -481,13 +492,18 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
     spinner.style.display = 'block';
     btnText.textContent = '전송 중...';
 
+    var siteScale = document.getElementById('inqSiteScale').value;
+    var reqText   = document.getElementById('inqRequirements').value.trim();
+    var combinedReq = (siteScale ? '[현장 규모: ' + siteScale + ']\n' : '') + reqText;
+
     var payload = {
       company_type:  document.getElementById('inqCompanyType').value,
       company_name:  document.getElementById('inqCompanyName').value.trim(),
       contact_name:  document.getElementById('inqContactName').value.trim(),
       contact_phone: document.getElementById('inqContactPhone').value.trim(),
       contact_email: document.getElementById('inqContactEmail').value.trim(),
-      requirements:  document.getElementById('inqRequirements').value.trim(),
+      site_scale:    siteScale,
+      requirements:  reqText,
       source:        window.location.pathname || 'direct'
     };
 
@@ -495,6 +511,25 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
       console.warn('[GADA] Supabase anon key가 설정되지 않았습니다. inquiry.js의 SUPABASE_ANON을 업데이트하세요.');
       setTimeout(showSuccess, 800);
       return;
+    }
+
+    // Apps Script 리드 시트 저장 (비동기, 실패해도 UX 유지)
+    if (BOOKING_URL) {
+      fetch(BOOKING_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: JSON.stringify({
+          action:       'saveLead',
+          company_type: payload.company_type,
+          company_name: payload.company_name,
+          contact_name: payload.contact_name,
+          contact_phone: payload.contact_phone,
+          contact_email: payload.contact_email,
+          site_scale:   payload.site_scale,
+          requirements: payload.requirements,
+          source:       payload.source
+        })
+      }).catch(function () {});
     }
 
     fetch(SUPABASE_URL + '/rest/v1/rpc/submit_lead', {
@@ -510,7 +545,7 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
         p_contact_name:  payload.contact_name,
         p_contact_phone: payload.contact_phone,
         p_contact_email: payload.contact_email,
-        p_requirements:  payload.requirements,
+        p_requirements:  combinedReq,
         p_source:        payload.source
       })
     }).then(function (res) {

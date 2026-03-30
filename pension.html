@@ -58,8 +58,9 @@
     .nav-dropdown-btn:hover { color: var(--t1); background: var(--bg); }
     .nav-dropdown-btn svg { transition: transform .2s; }
     .nav-dropdown:hover .nav-dropdown-btn svg { transform: rotate(180deg); }
-    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid var(--border); border-radius: var(--r); box-shadow: 0 8px 24px rgba(0,0,0,.1); min-width: 170px; padding: 8px; z-index: 1000; }
-    .nav-dropdown:hover .nav-dropdown-menu { display: flex; flex-direction: column; gap: 2px; }
+    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 6px; z-index: 1000; min-width: 180px; }
+    .nav-dropdown-menu-inner { background: #fff; border: 1px solid var(--border); border-radius: var(--r); box-shadow: 0 8px 24px rgba(0,0,0,.12); padding: 8px; display: flex; flex-direction: column; gap: 2px; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
     .ndm-link { padding: 10px 12px; border-radius: 8px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
     .ndm-link:hover { background: var(--bg); }
     .ndm-blue { color: var(--blue); }
@@ -390,8 +391,10 @@
   <div class="nav-dropdown">
     <button class="nav-dropdown-btn">제품 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div class="nav-dropdown-menu">
-      <a href="pension.html" class="ndm-link ndm-blue">🔵 가다 오피스</a>
-      <a href="direct-pay.html" class="ndm-link ndm-gada">🟢 가다 직접지급</a>
+      <div class="nav-dropdown-menu-inner">
+        <a href="pension.html" class="ndm-link ndm-blue">🔵 가다 오피스</a>
+        <a href="direct-pay.html" class="ndm-link ndm-gada">🟢 가다 직접지급</a>
+      </div>
     </div>
   </div>
   <a href="#" onclick="openInquiry('pension');return false;" class="nav-cta">도입 문의</a>
