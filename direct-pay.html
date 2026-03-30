@@ -202,8 +202,23 @@
       .ba-fa { border-top: 2px solid #6ee7b7; }
     }
 
+    /* ── LEGAL HERO (light mode overrides) ── */
+    #legal-hero { background: #fff; border-top: 1px solid var(--border); }
+    #legal-hero .law-doc-frame { box-shadow: 0 4px 24px rgba(0,0,0,.12), 0 1px 0 var(--border); }
+    #legal-hero .law-doc-overlay { background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,.15) 100%); }
+    #legal-hero .law-source { color: var(--t3); }
+    #legal-hero .law-quote { background: var(--bg); border-left: 3px solid var(--gada); color: var(--t1); }
+    #legal-hero .law-quote strong { color: var(--t1); }
+    #legal-hero .law-quote span { color: var(--t3) !important; }
+    #legal-hero .law-pt { background: var(--bg); border: 1.5px solid var(--border); }
+    #legal-hero .law-pt-ttl { color: var(--t1); }
+    #legal-hero .law-pt-desc { color: var(--t2); }
+    #legal-hero .law-footer { background: var(--gada-lt); border: 1.5px solid #b3f0dc; color: var(--t2); }
+    #legal-hero .law-badge { background: var(--gada-lt); border-color: #6ee7b7; }
+    #legal-hero p[style*="rgba(255,255,255,.2)"] { color: var(--t3) !important; }
+
     /* ── SOLUTION FLOW ── */
-    #solution { background: var(--bg); }
+    #solution { background: #fff; }
     .flow-box { background: #fff; border-radius: var(--r-lg); padding: 44px 36px; border: 1.5px solid var(--border); overflow-x: auto; margin-top: 32px; box-shadow: var(--shadow); }
     .flow-row { display: flex; align-items: flex-start; justify-content: center; min-width: 600px; }
     .fn { text-align: center; flex: 1; min-width: 96px; display: flex; flex-direction: column; align-items: center; }
@@ -229,7 +244,7 @@
     .sol-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 28px; }
 
     /* ── FEATURES ── */
-    #features { background: #fff; }
+    #features { background: var(--bg); }
     .feat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-top: 36px; }
     .feat-card { background: var(--bg); border-radius: var(--r-lg); padding: 26px; border: 1.5px solid var(--border); transition: border-color .2s, background .2s, transform .2s, box-shadow .2s; }
     .feat-card:hover { border-color: var(--gada); background: #fff; transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,184,122,.10); }
@@ -239,7 +254,7 @@
     .feat-tag { display: inline-block; margin-top: 12px; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 700; background: var(--gada-lt); color: var(--gada-d); }
 
     /* ── HOW IT WORKS ── */
-    #how-it-works { background: var(--bg); }
+    #how-it-works { background: #fff; }
     .steps { max-width: 680px; margin: 36px auto 0; }
     .step { display: flex; gap: 18px; padding: 22px 0; }
     .step + .step { border-top: 1px solid var(--border); }
@@ -534,10 +549,10 @@
 </section>
 
 <!-- ── LEGAL (HERO POSITION) ── -->
-<section id="legal-hero" style="background:var(--dark);padding:72px 0;">
+<section id="legal-hero">
   <div class="wrap">
-    <p class="eyebrow" style="color:rgba(255,255,255,.35)">법적 의무화 · 국토교통부령</p>
-    <h2 class="title" style="color:#fff;">법으로 정해졌습니다.<br /><span style="color:var(--gada)">2026.03.30부터 의무입니다.</span></h2>
+    <p class="eyebrow">법적 의무화 · 국토교통부령</p>
+    <h2 class="title">법으로 정해졌습니다.<br /><span style="color:var(--gada)">2026.03.30부터 의무입니다.</span></h2>
 
     <div class="law-wrap">
       <!-- Left: Official Document Image -->
@@ -692,17 +707,17 @@
 
     <!-- 핵심 변화 요약 -->
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;">
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--r);padding:18px 20px;text-align:center;box-shadow:var(--shadow);">
+      <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);padding:18px 20px;text-align:center;">
         <div style="font-size:22px;margin-bottom:6px;">⚡</div>
         <div style="font-size:14px;font-weight:900;color:var(--t1);margin-bottom:4px;">입금 즉시 자동이체</div>
         <div style="font-size:12px;color:var(--t2);line-height:1.6;">공사대금 수령 즉시<br />근로자 계좌로 직접 분배</div>
       </div>
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--r);padding:18px 20px;text-align:center;box-shadow:var(--shadow);">
+      <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);padding:18px 20px;text-align:center;">
         <div style="font-size:22px;margin-bottom:6px;">🏦</div>
         <div style="font-size:14px;font-weight:900;color:var(--t1);margin-bottom:4px;">iM뱅크 현장 전용계좌</div>
         <div style="font-size:12px;color:var(--t2);line-height:1.6;">KB국민은행·JB전북은행<br />펌뱅킹 제휴 계좌</div>
       </div>
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--r);padding:18px 20px;text-align:center;box-shadow:var(--shadow);">
+      <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);padding:18px 20px;text-align:center;">
         <div style="font-size:22px;margin-bottom:6px;">📊</div>
         <div style="font-size:14px;font-weight:900;color:var(--t1);margin-bottom:4px;">지급 기록 자동 매칭</div>
         <div style="font-size:12px;color:var(--t2);line-height:1.6;">노무비 대장 자동 생성<br />건설사 ERP 연동 제공</div>
@@ -792,10 +807,10 @@
 
       <!-- 비용 구조 -->
       <div style="display:flex;flex-direction:column;gap:16px;">
-        <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow);">
+        <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:28px;">
           <div style="font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--gada);margin-bottom:14px;">💰 비용 구조</div>
           <p style="font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:18px;">iM뱅크에서 지정한 서비스 이용료가 건당 과금되며, <strong>웍스메이트에 부과하실 비용은 없습니다.</strong></p>
-          <div style="display:flex;align-items:center;gap:8px;justify-content:center;padding:16px;background:var(--bg);border-radius:var(--r);">
+          <div style="display:flex;align-items:center;gap:8px;justify-content:center;padding:16px;background:#fff;border-radius:var(--r);border:1px solid var(--border);">
             <div style="text-align:center;">
               <div style="font-size:11px;font-weight:700;color:var(--t3);margin-bottom:4px;">실시간 지급이체</div>
               <div style="font-size:24px;font-weight:900;color:var(--t1);">300원</div>
