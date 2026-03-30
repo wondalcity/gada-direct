@@ -109,26 +109,41 @@
 
     /* ── OVERVIEW (before/after) ── */
     #overview { background: var(--bg); padding: 64px 0; }
-    .ov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); }
-    .ov-before { background: var(--dark2); padding: 40px 36px; }
-    .ov-after  { background: var(--blue);  padding: 40px 36px; }
-    .ov-tag { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
-    .ov-before .ov-tag { color: rgba(255,255,255,.35); }
-    .ov-after  .ov-tag { color: rgba(255,255,255,.7); }
-    .ov-title { font-size: clamp(18px, 2vw, 24px); font-weight: 900; margin-bottom: 24px; line-height: 1.25; }
-    .ov-before .ov-title { color: rgba(255,255,255,.65); }
-    .ov-after  .ov-title { color: #fff; }
-    .ov-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-    .ov-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.7; }
-    .ov-before .ov-list li { color: rgba(255,255,255,.55); }
-    .ov-after  .ov-list li { color: rgba(255,255,255,.85); }
-    .ov-ico { font-size: 16px; flex-shrink: 0; line-height: 1.4; }
-    .ov-divider { height: 1px; margin: 24px 0; }
-    .ov-before .ov-divider { background: rgba(255,255,255,.08); }
-    .ov-after  .ov-divider { background: rgba(255,255,255,.2); }
-    .ov-foot { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 99px; font-size: 13px; font-weight: 800; }
-    .ov-before .ov-foot { background: rgba(255,255,255,.06); color: rgba(255,255,255,.4); }
-    .ov-after  .ov-foot { background: rgba(255,255,255,.2); color: #fff; }
+    /* ── OVERVIEW (Before / After) ── */
+    .ov-wrap { margin-top: 44px; border-radius: var(--r-lg); overflow: hidden; box-shadow: 0 12px 48px rgba(0,0,0,.18); }
+    .ov-r { display: grid; grid-template-columns: 1fr 52px 1fr; }
+    .ov-hd-b { background: #1c0a0a; padding: 22px 28px; display: flex; align-items: center; gap: 12px; border-bottom: 2px solid rgba(239,68,68,.3); }
+    .ov-hd-m { background: #0d0d0d; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid rgba(255,255,255,.05); }
+    .ov-hd-a { background: #001233; padding: 22px 28px; display: flex; align-items: center; gap: 12px; border-bottom: 2px solid rgba(6,105,247,.4); }
+    .ov-hd-ic { font-size: 24px; }
+    .ov-hd-lbl { font-size: 10px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 2px; }
+    .ov-hd-b .ov-hd-lbl { color: #FC8181; }
+    .ov-hd-a .ov-hd-lbl { color: #93C5FD; }
+    .ov-hd-desc { font-size: 14px; font-weight: 800; color: #fff; }
+    .ov-cb { background: rgba(239,68,68,.04); padding: 20px 28px; display: flex; flex-direction: column; gap: 5px; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .ov-cm { background: #0d0d0d; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(255,255,255,.04); color: rgba(255,255,255,.15); font-size: 14px; font-weight: 700; }
+    .ov-ca { background: rgba(6,105,247,.05); padding: 20px 28px; display: flex; flex-direction: column; gap: 5px; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .ov-topic { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 2px; }
+    .ov-cb .ov-topic { color: rgba(252,129,129,.45); }
+    .ov-ca .ov-topic { color: rgba(6,105,247,.7); }
+    .ov-txt { font-size: 14px; line-height: 1.65; display: flex; align-items: flex-start; gap: 9px; }
+    .ov-cb .ov-txt { color: rgba(255,255,255,.45); }
+    .ov-ca .ov-txt { color: rgba(255,255,255,.88); font-weight: 600; }
+    .ov-ei { font-size: 17px; flex-shrink: 0; line-height: 1.35; }
+    .ov-fb { background: rgba(239,68,68,.08); padding: 18px 28px; display: flex; align-items: center; gap: 8px; }
+    .ov-fm { background: #0d0d0d; }
+    .ov-fa { background: rgba(6,105,247,.1); padding: 18px 28px; display: flex; align-items: center; gap: 8px; }
+    .ov-fb-txt { font-size: 13px; font-weight: 800; color: rgba(252,129,129,.75); }
+    .ov-fa-txt { font-size: 13px; font-weight: 800; color: #93C5FD; }
+    @media (max-width: 700px) {
+      .ov-r { grid-template-columns: 1fr; }
+      .ov-hd-m, .ov-cm, .ov-fm { display: none; }
+      .ov-hd-b { border-bottom: none; }
+      .ov-hd-a { border-top: 2px solid rgba(6,105,247,.4); }
+      .ov-cb { border-bottom: none; }
+      .ov-ca { border-top: 1px solid rgba(255,255,255,.06); }
+      .ov-fa { border-top: 1px solid rgba(6,105,247,.2); }
+    }
 
     /* ── TIMELINE ── */
     #timeline { background: #fff; }
@@ -184,20 +199,45 @@
     #dual-change { display: none; }
 
     /* ── 기준 변경 비교표 ── */
-    .chg-table { width: 100%; border-collapse: collapse; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); font-size: 14px; min-width: 540px; }
-    .chg-table th, .chg-table td { padding: 14px 18px; text-align: left; vertical-align: top; line-height: 1.65; }
-    .chg-table thead tr { border-bottom: 2px solid rgba(255,255,255,.15); }
-    .ct-head-lbl { background: var(--dark2); color: rgba(255,255,255,.45); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; width: 18%; }
-    .ct-head-old { background: var(--dark2); color: rgba(255,255,255,.6); font-size: 13px; font-weight: 800; width: 41%; }
-    .ct-head-old span, .ct-head-new span { display: block; font-size: 11px; font-weight: 600; opacity: .55; margin-top: 2px; letter-spacing: .04em; }
-    .ct-head-new { background: var(--blue); color: #fff; font-size: 13px; font-weight: 800; width: 41%; }
-    .chg-table tbody tr { border-bottom: 1px solid var(--border); }
-    .chg-table tbody tr:last-child { border-bottom: none; }
-    .ct-lbl { background: var(--bg); color: var(--t2); font-size: 12px; font-weight: 700; white-space: nowrap; }
-    .ct-old { background: #fff; color: var(--t2); }
-    .ct-old strong { color: var(--t1); }
-    .ct-new { background: var(--blue-lt); color: #1a3a6e; }
-    .ct-new strong { color: var(--blue-d); font-weight: 800; }
+    /* ── CHANGE TABLE (BA 비교) ── */
+    .ct-wrap { border-radius: var(--r-lg); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.12); }
+    .ct-r { display: grid; grid-template-columns: minmax(72px,.7fr) 1.5fr 44px 1.5fr; }
+    .ct-hd-lbl { background: #0d1117; padding: 18px 18px; display: flex; align-items: center; }
+    .ct-hd-lbl-txt { font-size: 10px; font-weight: 800; letter-spacing: .1em; color: rgba(255,255,255,.3); text-transform: uppercase; }
+    .ct-hd-old { background: #1c0a0a; padding: 18px 20px; border-bottom: 2px solid rgba(239,68,68,.35); display: flex; align-items: center; gap: 8px; }
+    .ct-hd-arr { background: #0d0d0d; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid rgba(255,255,255,.05); }
+    .ct-hd-new { background: #001233; padding: 18px 20px; border-bottom: 2px solid rgba(6,105,247,.4); display: flex; align-items: center; gap: 8px; }
+    .ct-hd-badge { font-size: 10px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+    .ct-hd-old .ct-hd-badge { color: #FC8181; }
+    .ct-hd-new .ct-hd-badge { color: #93C5FD; }
+    .ct-hd-sub { font-size: 13px; font-weight: 800; color: #fff; margin-top: 1px; }
+    .ct-hd-note { font-size: 11px; color: rgba(255,255,255,.4); margin-top: 1px; }
+    /* rows */
+    .ct-lbl-c { background: var(--bg); padding: 16px 18px; display: flex; align-items: center; border-bottom: 1px solid var(--border); }
+    .ct-lbl-txt { font-size: 11px; font-weight: 800; color: var(--t2); white-space: nowrap; letter-spacing: .04em; }
+    .ct-old-c { background: #fff8f8; padding: 16px 20px; border-bottom: 1px solid #fde8e8; display: flex; align-items: flex-start; gap: 8px; }
+    .ct-arr-c { background: #f9fafb; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); color: var(--t3); font-size: 14px; font-weight: 700; }
+    .ct-new-c { background: var(--blue-lt); padding: 16px 20px; border-bottom: 1px solid #d1e3ff; display: flex; align-items: flex-start; gap: 8px; }
+    .ct-r:last-child .ct-lbl-c,
+    .ct-r:last-child .ct-old-c,
+    .ct-r:last-child .ct-arr-c,
+    .ct-r:last-child .ct-new-c { border-bottom: none; }
+    .ct-old-c .ct-txt { font-size: 14px; color: #9b1c1c; line-height: 1.6; }
+    .ct-old-c .ct-txt strong { color: #7f1d1d; font-weight: 800; }
+    .ct-new-c .ct-txt { font-size: 14px; color: #1e3a8a; line-height: 1.6; font-weight: 600; }
+    .ct-new-c .ct-txt strong { color: var(--blue-d); font-weight: 800; }
+    @media (max-width: 700px) {
+      .ct-r { grid-template-columns: minmax(64px,.6fr) 1fr 36px 1fr; }
+      .ct-old-c .ct-txt, .ct-new-c .ct-txt { font-size: 12px; }
+      .ct-lbl-txt { font-size: 10px; }
+    }
+    @media (max-width: 500px) {
+      .ct-r { grid-template-columns: 1fr; }
+      .ct-hd-arr, .ct-arr-c { display: none; }
+      .ct-lbl-c { border-bottom: none; padding-bottom: 6px; }
+      .ct-hd-new { border-top: 2px solid rgba(6,105,247,.4); }
+      .ct-new-c { border-top: 1px solid #d1e3ff; }
+    }
     .dual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
     .dual-card { border-radius: var(--r-lg); overflow: hidden; border: 1.5px solid var(--border); box-shadow: var(--shadow); }
     .dual-head { padding: 18px 22px; }
@@ -442,28 +482,72 @@
   <div class="wrap">
     <p class="eyebrow">현재 상황 vs 가다 오피스 도입 후</p>
     <h2 class="title">지금도 구 기준으로<br />신고하고 계신가요?</h2>
-    <div class="ov-grid" style="margin-top:36px">
-      <div class="ov-before">
-        <div class="ov-tag">❌ &nbsp;현재 — 구 기준 그대로</div>
-        <div class="ov-title">오신고·누락이<br />매월 반복됩니다</div>
-        <ul class="ov-list">
-          <li><span class="ov-ico">📋</span>폐지된 2개월 합산 방식으로 계속 판단 → 미대상 근로자를 신고하거나 대상자를 누락</li>
-          <li><span class="ov-ico">⚠️</span>국민연금·건강보험 기준이 달라진 것을 모르고 동일 처리 → 보험별 오신고</li>
-          <li><span class="ov-ico">🏢</span>복수 현장 근로자를 현장별로만 판단 → 사업장 합산 신고 의무 미이행</li>
-        </ul>
-        <div class="ov-divider"></div>
-        <span class="ov-foot">건당 최대 160,420원 손실</span>
+    <div class="ov-wrap">
+      <!-- Header -->
+      <div class="ov-r">
+        <div class="ov-hd-b">
+          <span class="ov-hd-ic">❌</span>
+          <div><div class="ov-hd-lbl">BEFORE</div><div class="ov-hd-desc">현재 — 구 기준 그대로</div></div>
+        </div>
+        <div class="ov-hd-m"></div>
+        <div class="ov-hd-a">
+          <span class="ov-hd-ic">✅</span>
+          <div><div class="ov-hd-lbl">AFTER</div><div class="ov-hd-desc">가다 오피스 도입 후</div></div>
+        </div>
       </div>
-      <div class="ov-after">
-        <div class="ov-tag">✅ &nbsp;가다 오피스 도입 후</div>
-        <div class="ov-title">이체 기록 기반으로<br />자동 처리됩니다</div>
-        <ul class="ov-list">
-          <li><span class="ov-ico">⚡</span>국민연금·건강보험을 각각 현행 기준으로 자동 판단 → 오신고 Zero</li>
-          <li><span class="ov-ico">🏢</span>사업장 전 현장 합산 로직 자동 적용 → 2026.01 의무 완전 대응</li>
-          <li><span class="ov-ico">📄</span>신고 근거 데이터 자동 보관 → 사후 소명 즉시 가능</li>
-        </ul>
-        <div class="ov-divider"></div>
-        <span class="ov-foot">✓ 기준 변경 자동 대응</span>
+      <!-- Row 1: 판단 기준 -->
+      <div class="ov-r">
+        <div class="ov-cb">
+          <div class="ov-topic">판단 기준</div>
+          <div class="ov-txt"><span class="ov-ei">📋</span>폐지된 2개월 합산 방식으로 계속 판단<br/><small style="opacity:.6;font-size:12px;">미대상 신고 또는 대상자 누락 반복</small></div>
+        </div>
+        <div class="ov-cm">→</div>
+        <div class="ov-ca">
+          <div class="ov-topic">판단 기준</div>
+          <div class="ov-txt"><span class="ov-ei">⚡</span>매월 말일 기준 독립 판단 자동 적용<br/><small style="opacity:.7;font-size:12px;">오신고·누락 Zero, 기준 변경 즉시 반영</small></div>
+        </div>
+      </div>
+      <!-- Row 2: 보험 기준 -->
+      <div class="ov-r">
+        <div class="ov-cb">
+          <div class="ov-topic">보험 기준</div>
+          <div class="ov-txt"><span class="ov-ei">⚠️</span>국민연금·건강보험을 동일 기준으로 처리<br/><small style="opacity:.6;font-size:12px;">기준이 달라진 것을 몰라 보험별 오신고</small></div>
+        </div>
+        <div class="ov-cm">→</div>
+        <div class="ov-ca">
+          <div class="ov-topic">보험 기준</div>
+          <div class="ov-txt"><span class="ov-ei">🎯</span>국민연금·건강보험 각각 현행 기준 자동 적용<br/><small style="opacity:.7;font-size:12px;">보험별 대상 여부 정확 판단, 오신고 방지</small></div>
+        </div>
+      </div>
+      <!-- Row 3: 합산 신고 -->
+      <div class="ov-r">
+        <div class="ov-cb">
+          <div class="ov-topic">합산 신고</div>
+          <div class="ov-txt"><span class="ov-ei">🏢</span>복수 현장 근로자를 현장별로만 판단<br/><small style="opacity:.6;font-size:12px;">사업장 합산 신고 의무 미이행 → 법 위반 리스크</small></div>
+        </div>
+        <div class="ov-cm">→</div>
+        <div class="ov-ca">
+          <div class="ov-topic">합산 신고</div>
+          <div class="ov-txt"><span class="ov-ei">🏗️</span>사업장 전 현장 합산 로직 자동 적용<br/><small style="opacity:.7;font-size:12px;">2026.01 의무 완전 대응, 법 위반 원천 차단</small></div>
+        </div>
+      </div>
+      <!-- Row 4: 근거 관리 -->
+      <div class="ov-r">
+        <div class="ov-cb">
+          <div class="ov-topic">근거 관리</div>
+          <div class="ov-txt"><span class="ov-ei">📁</span>신고 근거 수동 관리, 서류 분산 보관<br/><small style="opacity:.6;font-size:12px;">감리·소명 요청 시 즉각 대응 불가</small></div>
+        </div>
+        <div class="ov-cm">→</div>
+        <div class="ov-ca">
+          <div class="ov-topic">근거 관리</div>
+          <div class="ov-txt"><span class="ov-ei">📄</span>신고 근거 데이터 자동 보관<br/><small style="opacity:.7;font-size:12px;">감리·소명 요청 즉시 대응 가능</small></div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="ov-r">
+        <div class="ov-fb"><span>⚠️</span><span class="ov-fb-txt">건당 최대 160,420원 손실 누적</span></div>
+        <div class="ov-fm"></div>
+        <div class="ov-fa"><span>✓</span><span class="ov-fa-txt">기준 변경 자동 대응 · 오신고 Zero</span></div>
       </div>
     </div>
   </div>
@@ -500,44 +584,50 @@
       </div>
     </div>
 
-    <!-- 기준 변경 비교표 -->
-    <div style="margin-top:40px;overflow-x:auto;">
-      <table class="chg-table">
-        <thead>
-          <tr>
-            <th class="ct-head-lbl">항목</th>
-            <th class="ct-head-old">❌ 구 기준 <span>폐지됨</span></th>
-            <th class="ct-head-new">✅ 현행 기준 <span>지금 적용 중</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="ct-lbl">판단 방식</td>
-            <td class="ct-old">최초 근로일 기준 <strong>2개월 합산</strong></td>
-            <td class="ct-new"><strong>매월 말일</strong> 기준 독립 판단</td>
-          </tr>
-          <tr>
-            <td class="ct-lbl">계산 단위</td>
-            <td class="ct-old">2개월에 걸쳐 합산 계산</td>
-            <td class="ct-new">각 월별로 <strong>별도 계산</strong></td>
-          </tr>
-          <tr>
-            <td class="ct-lbl">대상 기준</td>
-            <td class="ct-old">합산 8일 이상이면 대상</td>
-            <td class="ct-new">해당 월 <strong>8일 이상</strong> 또는 <strong>220만원 이상</strong></td>
-          </tr>
-          <tr>
-            <td class="ct-lbl">보험 기준</td>
-            <td class="ct-old">국민연금·건강보험 동일 기준</td>
-            <td class="ct-new">국민연금·건강보험 <strong>기준 분리</strong> 적용</td>
-          </tr>
-          <tr>
-            <td class="ct-lbl">적용 예시</td>
-            <td class="ct-old">9.10 최초 근로 → 9월+10월 합산 8일 이상 = 대상</td>
-            <td class="ct-new">9월은 9월만, 10월은 10월만 각각 판단</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- 기준 변경 비교표 (BA 구조) -->
+    <div class="ct-wrap" style="margin-top:40px;">
+      <!-- Header row -->
+      <div class="ct-r">
+        <div class="ct-hd-lbl"><span class="ct-hd-lbl-txt">항목</span></div>
+        <div class="ct-hd-old" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="ct-hd-badge">❌ 폐지됨</span><span class="ct-hd-sub">구 기준</span></div>
+        <div class="ct-hd-arr"></div>
+        <div class="ct-hd-new" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="ct-hd-badge">✅ 지금 적용 중</span><span class="ct-hd-sub">현행 기준</span></div>
+      </div>
+      <!-- Row 1: 판단 방식 -->
+      <div class="ct-r">
+        <div class="ct-lbl-c"><span class="ct-lbl-txt">판단 방식</span></div>
+        <div class="ct-old-c"><div class="ct-txt">최초 근로일 기준 <strong>2개월 합산</strong> 방식<br/><small>폐지된 기준으로 신고 시 오신고 처리</small></div></div>
+        <div class="ct-arr-c">→</div>
+        <div class="ct-new-c"><div class="ct-txt"><strong>매월 말일</strong> 기준 독립 판단<br/><small>매월 독립적으로 대상 여부 재판단</small></div></div>
+      </div>
+      <!-- Row 2: 계산 단위 -->
+      <div class="ct-r">
+        <div class="ct-lbl-c"><span class="ct-lbl-txt">계산 단위</span></div>
+        <div class="ct-old-c"><div class="ct-txt">2개월에 걸쳐 <strong>합산 계산</strong><br/><small>월 경계를 무시한 단순 누산</small></div></div>
+        <div class="ct-arr-c">→</div>
+        <div class="ct-new-c"><div class="ct-txt">각 월별로 <strong>별도 계산</strong><br/><small>월별 독립 계산으로 정확도 향상</small></div></div>
+      </div>
+      <!-- Row 3: 대상 기준 -->
+      <div class="ct-r">
+        <div class="ct-lbl-c"><span class="ct-lbl-txt">대상 기준</span></div>
+        <div class="ct-old-c"><div class="ct-txt">합산 <strong>8일 이상</strong>이면 대상<br/><small>근로일수 단일 기준만 적용</small></div></div>
+        <div class="ct-arr-c">→</div>
+        <div class="ct-new-c"><div class="ct-txt">해당 월 <strong>8일 이상</strong> 또는 <strong>220만원 이상</strong><br/><small>근로일수·소득 이중 기준 동시 적용</small></div></div>
+      </div>
+      <!-- Row 4: 보험 기준 -->
+      <div class="ct-r">
+        <div class="ct-lbl-c"><span class="ct-lbl-txt">보험 기준</span></div>
+        <div class="ct-old-c"><div class="ct-txt">국민연금·건강보험 <strong>동일 기준</strong><br/><small>두 보험을 같은 기준으로 일괄 처리</small></div></div>
+        <div class="ct-arr-c">→</div>
+        <div class="ct-new-c"><div class="ct-txt">국민연금·건강보험 <strong>기준 분리</strong> 적용<br/><small>보험별로 대상 여부 개별 판단 필수</small></div></div>
+      </div>
+      <!-- Row 5: 적용 예시 -->
+      <div class="ct-r">
+        <div class="ct-lbl-c"><span class="ct-lbl-txt">적용 예시</span></div>
+        <div class="ct-old-c"><div class="ct-txt">9.10 최초 근로 → 9월+10월 <strong>합산 8일 이상</strong> = 대상<br/><small>월 경계 무시, 2개월을 하나로 합산</small></div></div>
+        <div class="ct-arr-c">→</div>
+        <div class="ct-new-c"><div class="ct-txt">9월은 9월만, 10월은 10월만 <strong>각각 판단</strong><br/><small>매월 독립 판단으로 정확한 신고 가능</small></div></div>
+      </div>
     </div>
   </div>
 </section>

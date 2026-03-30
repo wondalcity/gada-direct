@@ -64,6 +64,7 @@ function doPost(e) {
   var action = body.action || '';
 
   if (action === 'book')         return handleBook(body);
+  if (action === 'saveLead')     return handleSaveLead(body);
   if (action === 'updateConfig') {
     if (body.pw !== ADMIN_PW) return json({ error: 'unauthorized' });
     return handleUpdateConfig(body.config);
@@ -252,6 +253,39 @@ function handleBlockDate(dateStr, block) {
   }
   PropertiesService.getScriptProperties().setProperty('blocked', JSON.stringify(blocked));
   return json({ ok: true, blocked: blocked });
+}
+
+// ── 리드 저장 ──────────────────────────────────────────────
+function handleSaveLead(body) {
+  try {
+    var sh = getLeadSheet();
+    sh.appendRow([
+      Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm:ss'),
+      body.company_type  || '',
+      body.company_name  || '',
+      body.contact_name  || '',
+      body.contact_phone || '',
+      body.contact_email || '',
+      body.site_scale    || '',
+      body.requirements  || '',
+      body.source        || ''
+    ]);
+    return json({ ok: true });
+  } catch (e) {
+    Logger.log('handleSaveLead error: ' + e);
+    return json({ ok: false, error: String(e) });
+  }
+}
+
+function getLeadSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet() || SpreadsheetApp.create(SS_NAME);
+  var sh = ss.getSheetByName('리드') || ss.insertSheet('리드');
+  if (sh.getLastRow() === 0) {
+    sh.appendRow(['접수일시', '건설사유형', '건설사명', '담당자', '연락처', '이메일', '현장규모', '요구사항', '유입경로']);
+    sh.getRange(1, 1, 1, 9).setFontWeight('bold').setBackground('#0F172A').setFontColor('#ffffff');
+    sh.setFrozenRows(1);
+  }
+  return sh;
 }
 
 // ── Spreadsheet 기록 ───────────────────────────────────────
