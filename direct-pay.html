@@ -58,18 +58,12 @@
     .nav-links a { font-size: 14px; font-weight: 600; color: var(--t2); }
     .nav-links a:hover { color: var(--gada); }
     .nav-back { display: none; }
-    .nav-dropdown { position: relative; }
-    .nav-dropdown-btn { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 700; color: var(--t2); padding: 6px 10px; border-radius: var(--r); cursor: pointer; background: none; border: none; font-family: inherit; }
-    .nav-dropdown-btn:hover { color: var(--t1); background: var(--bg); }
-    .nav-dropdown-btn svg { transition: transform .2s; }
-    .nav-dropdown:hover .nav-dropdown-btn svg { transform: rotate(180deg); }
-    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 6px; z-index: 1000; min-width: 180px; }
-    .nav-dropdown-menu-inner { background: #fff; border: 1px solid var(--border); border-radius: var(--r); box-shadow: 0 8px 24px rgba(0,0,0,.12); padding: 8px; display: flex; flex-direction: column; gap: 2px; }
-    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-    .ndm-link { padding: 10px 12px; border-radius: 8px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
-    .ndm-link:hover { background: var(--bg); }
-    .ndm-blue { color: var(--blue); }
-    .ndm-gada { color: var(--gada); }
+    .nav-product { display: flex; align-items: center; gap: 4px; }
+    .nav-product-link { font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: var(--r); transition: background .15s, color .15s; white-space: nowrap; }
+    .npl-blue { color: var(--blue); }
+    .npl-blue:hover { background: var(--blue-lt); }
+    .npl-gada { color: var(--gada); }
+    .npl-gada:hover { background: var(--gada-lt); }
     .nav-cta { background: var(--gada); color: #fff; padding: 8px 18px; border-radius: var(--r); font-size: 13px; font-weight: 700; }
     .nav-cta:hover { background: var(--gada-d); }
     .nav-cta-mobile { display: none; }
@@ -124,26 +118,44 @@
 
     /* ── BEFORE / AFTER ── */
     #before-after { background: #fff; }
-    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); margin-top: 36px; }
-    .ba-before { background: var(--dark2); padding: 40px 36px; }
-    .ba-after  { background: var(--dark);  padding: 40px 36px; }
-    .ba-tag { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
-    .ba-before .ba-tag { color: rgba(255,255,255,.35); }
-    .ba-after  .ba-tag { color: rgba(255,255,255,.7); }
-    .ba-title { font-size: clamp(18px, 2vw, 24px); font-weight: 900; margin-bottom: 24px; line-height: 1.25; }
-    .ba-before .ba-title { color: rgba(255,255,255,.65); }
-    .ba-after  .ba-title { color: #fff; }
-    .ba-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-    .ba-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.7; }
-    .ba-before .ba-list li { color: rgba(255,255,255,.55); }
-    .ba-after  .ba-list li { color: rgba(255,255,255,.85); }
-    .ba-ico { font-size: 16px; flex-shrink: 0; line-height: 1.4; }
-    .ba-divider { height: 1px; margin: 24px 0; }
-    .ba-before .ba-divider { background: rgba(255,255,255,.08); }
-    .ba-after  .ba-divider { background: rgba(255,255,255,.12); }
-    .ba-foot { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 99px; font-size: 13px; font-weight: 800; }
-    .ba-before .ba-foot { background: rgba(255,255,255,.06); color: rgba(255,255,255,.4); }
-    .ba-after  .ba-foot { background: var(--gada); color: #fff; }
+    /* ── BEFORE / AFTER ── */
+    .ba-wrap { margin-top: 44px; border-radius: var(--r-lg); overflow: hidden; box-shadow: 0 12px 48px rgba(0,0,0,.3); }
+    .ba-r { display: grid; grid-template-columns: 1fr 52px 1fr; }
+    /* Header row */
+    .ba-hd-b { background: #1c0a0a; padding: 22px 28px; display: flex; align-items: center; gap: 12px; border-bottom: 2px solid rgba(239,68,68,.3); }
+    .ba-hd-m { background: #0d0d0d; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid rgba(255,255,255,.05); }
+    .ba-hd-a { background: #021a0e; padding: 22px 28px; display: flex; align-items: center; gap: 12px; border-bottom: 2px solid rgba(0,184,122,.35); }
+    .ba-hd-ic { font-size: 24px; }
+    .ba-hd-lbl { font-size: 10px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 2px; }
+    .ba-hd-b .ba-hd-lbl { color: #FC8181; }
+    .ba-hd-a .ba-hd-lbl { color: #4DFFA8; }
+    .ba-hd-desc { font-size: 14px; font-weight: 800; color: #fff; }
+    /* Content rows */
+    .ba-cb { background: rgba(239,68,68,.04); padding: 20px 28px; display: flex; flex-direction: column; gap: 5px; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .ba-cm { background: #0d0d0d; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(255,255,255,.04); color: rgba(255,255,255,.15); font-size: 14px; font-weight: 700; }
+    .ba-ca { background: rgba(0,184,122,.04); padding: 20px 28px; display: flex; flex-direction: column; gap: 5px; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .ba-topic { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 2px; }
+    .ba-cb .ba-topic { color: rgba(252,129,129,.45); }
+    .ba-ca .ba-topic { color: rgba(0,184,122,.6); }
+    .ba-txt { font-size: 14px; line-height: 1.65; display: flex; align-items: flex-start; gap: 9px; }
+    .ba-cb .ba-txt { color: rgba(255,255,255,.45); }
+    .ba-ca .ba-txt { color: rgba(255,255,255,.88); font-weight: 600; }
+    .ba-ei { font-size: 17px; flex-shrink: 0; line-height: 1.35; }
+    /* Footer row */
+    .ba-fb { background: rgba(239,68,68,.08); padding: 18px 28px; display: flex; align-items: center; gap: 8px; }
+    .ba-fm { background: #0d0d0d; }
+    .ba-fa { background: rgba(0,184,122,.1); padding: 18px 28px; display: flex; align-items: center; gap: 8px; }
+    .ba-fb-txt { font-size: 13px; font-weight: 800; color: rgba(252,129,129,.75); }
+    .ba-fa-txt { font-size: 13px; font-weight: 800; color: #4DFFA8; }
+    @media (max-width: 700px) {
+      .ba-r { grid-template-columns: 1fr; }
+      .ba-hd-m, .ba-cm, .ba-fm { display: none; }
+      .ba-hd-b { border-bottom: none; border-radius: 0; }
+      .ba-hd-a { border-top: 2px solid rgba(0,184,122,.35); }
+      .ba-cb { border-bottom: none; }
+      .ba-ca { border-top: 1px solid rgba(255,255,255,.06); }
+      .ba-fa { border-top: 1px solid rgba(0,184,122,.2); }
+    }
 
     /* ── SOLUTION FLOW ── */
     #solution { background: var(--bg); }
@@ -372,30 +384,72 @@
   <div class="wrap">
     <p class="eyebrow">구조 비교</p>
     <h2 class="title">직접지급으로 전환하면<br />무엇이 달라지나요?</h2>
-    <div class="ba-grid">
-      <div class="ba-before">
-        <div class="ba-tag">❌ &nbsp;현재 — 간접 지급 구조</div>
-        <div class="ba-title">법적 리스크와<br />자금 부담이 쌓입니다</div>
-        <ul class="ba-list">
-          <li><span class="ba-ico">🏗️</span>건설사 → 용역사 계좌 → 근로자 재지급</li>
-          <li><span class="ba-ico">🚨</span>용역사 횡령·체불 시 건설사 연대 책임 — 금액 무제한</li>
-          <li><span class="ba-ico">📄</span>노무비 대장 수동 작성 → 오류·감리 제출 지연</li>
-          <li><span class="ba-ico">💸</span>매일 지급으로 자금 경직, 월말 유동성 부족</li>
-        </ul>
-        <div class="ba-divider"></div>
-        <span class="ba-foot">체불 발생 시 무한 책임</span>
+    <div class="ba-wrap">
+      <!-- Header -->
+      <div class="ba-r">
+        <div class="ba-hd-b">
+          <span class="ba-hd-ic">❌</span>
+          <div><div class="ba-hd-lbl">BEFORE</div><div class="ba-hd-desc">현재 — 간접 지급 구조</div></div>
+        </div>
+        <div class="ba-hd-m"></div>
+        <div class="ba-hd-a">
+          <span class="ba-hd-ic">✅</span>
+          <div><div class="ba-hd-lbl">AFTER</div><div class="ba-hd-desc">가다 직접지급 도입 후</div></div>
+        </div>
       </div>
-      <div class="ba-after">
-        <div class="ba-tag">✅ &nbsp;가다 직접지급 도입 후</div>
-        <div class="ba-title">리스크를<br />구조적으로 제거합니다</div>
-        <ul class="ba-list">
-          <li><span class="ba-ico">🏦</span>현장 전용 iM뱅킹 계좌 → 근로자 직접 이체</li>
-          <li><span class="ba-ico">✅</span>전용계좌 구조로 체불·횡령 리스크 원천 차단</li>
-          <li><span class="ba-ico">📄</span>이체 완료 즉시 노무비 대장·이체증 자동 생성</li>
-          <li><span class="ba-ico">💰</span>자금 선투입 → 건설사 월 단위 정산으로 유동성 확보</li>
-        </ul>
-        <div class="ba-divider"></div>
-        <span class="ba-foot">✓ 법무법인 적법성 검토 완료</span>
+      <!-- Row 1: 지급 구조 -->
+      <div class="ba-r">
+        <div class="ba-cb">
+          <div class="ba-topic">지급 구조</div>
+          <div class="ba-txt"><span class="ba-ei">🏗️</span>건설사 → 용역사 계좌 → 근로자 재지급<br/><small style="opacity:.6;font-size:12px;">용역사를 통한 간접 지급</small></div>
+        </div>
+        <div class="ba-cm">→</div>
+        <div class="ba-ca">
+          <div class="ba-topic">지급 구조</div>
+          <div class="ba-txt"><span class="ba-ei">🏦</span>현장 전용 계좌 → 근로자 직접 이체<br/><small style="opacity:.7;font-size:12px;">iM뱅킹 전용계좌, 중간 단계 없음</small></div>
+        </div>
+      </div>
+      <!-- Row 2: 법적 리스크 -->
+      <div class="ba-r">
+        <div class="ba-cb">
+          <div class="ba-topic">법적 리스크</div>
+          <div class="ba-txt"><span class="ba-ei">🚨</span>용역사 체불·횡령 시 원도급 연대 책임<br/><small style="opacity:.6;font-size:12px;">금액 무제한, 사전 차단 불가</small></div>
+        </div>
+        <div class="ba-cm">→</div>
+        <div class="ba-ca">
+          <div class="ba-topic">법적 리스크</div>
+          <div class="ba-txt"><span class="ba-ei">🛡️</span>전용계좌 구조로 체불·횡령 리스크 원천 차단<br/><small style="opacity:.7;font-size:12px;">법무법인 적법성 검토 완료</small></div>
+        </div>
+      </div>
+      <!-- Row 3: 서류 작업 -->
+      <div class="ba-r">
+        <div class="ba-cb">
+          <div class="ba-topic">서류 작업</div>
+          <div class="ba-txt"><span class="ba-ei">📄</span>노무비 대장 수동 작성 → 오류·지연 발생<br/><small style="opacity:.6;font-size:12px;">감리 제출 지연, 관리 공수 과다</small></div>
+        </div>
+        <div class="ba-cm">→</div>
+        <div class="ba-ca">
+          <div class="ba-topic">서류 작업</div>
+          <div class="ba-txt"><span class="ba-ei">📋</span>이체 완료 즉시 노무비 대장·이체증 자동 생성<br/><small style="opacity:.7;font-size:12px;">감리 제출 즉시 가능, 무서류 운영</small></div>
+        </div>
+      </div>
+      <!-- Row 4: 자금 운용 -->
+      <div class="ba-r">
+        <div class="ba-cb">
+          <div class="ba-topic">자금 운용</div>
+          <div class="ba-txt"><span class="ba-ei">💸</span>매일 지급으로 자금 경직, 월말 유동성 부족<br/><small style="opacity:.6;font-size:12px;">현금 여유 없이 일 단위 출금</small></div>
+        </div>
+        <div class="ba-cm">→</div>
+        <div class="ba-ca">
+          <div class="ba-topic">자금 운용</div>
+          <div class="ba-txt"><span class="ba-ei">💰</span>자금 선투입 → 건설사 월 단위 정산<br/><small style="opacity:.7;font-size:12px;">유동성 확보, 자금 계획 수립 가능</small></div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="ba-r">
+        <div class="ba-fb"><span>⚠️</span><span class="ba-fb-txt">체불 발생 시 무한 책임</span></div>
+        <div class="ba-fm"></div>
+        <div class="ba-fa"><span>✓</span><span class="ba-fa-txt">법무법인 적법성 검토 완료</span></div>
       </div>
     </div>
   </div>
