@@ -273,6 +273,47 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
     }
     .bk-next-btn:hover    { background: #00A06A; }
     .bk-next-btn:disabled { background: rgba(255,255,255,.1); color: rgba(255,255,255,.3); cursor: not-allowed; }
+
+    /* ── Blue Theme (가다 오피스) ── */
+    .inq-modal.theme-pension { background: #0a1628; border-color: rgba(6,105,247,.25); }
+    .inq-modal.theme-pension .inq-badge {
+      background: rgba(6,105,247,.15); border-color: rgba(6,105,247,.4); color: #93c5fd;
+    }
+    .inq-modal.theme-pension .inq-badge::before { background: #0669F7; }
+    .inq-modal.theme-pension .inq-field label .req { color: #60a5fa; }
+    .inq-modal.theme-pension .inq-field input:focus,
+    .inq-modal.theme-pension .inq-field select:focus,
+    .inq-modal.theme-pension .inq-field textarea:focus {
+      border-color: #0669F7; background: rgba(6,105,247,.06);
+    }
+    .inq-modal.theme-pension .inq-submit {
+      background: #0669F7;
+    }
+    .inq-modal.theme-pension .inq-submit:hover {
+      background: #044FC0; box-shadow: 0 8px 24px rgba(6,105,247,.4);
+    }
+    .inq-modal.theme-pension .inq-success-icon {
+      background: rgba(6,105,247,.12); border-color: rgba(6,105,247,.35);
+    }
+    .inq-modal.theme-pension .bk-cal-day.today { color: #60a5fa; }
+    .inq-modal.theme-pension .bk-cal-day.selected {
+      background: #0669F7; border-color: #0669F7;
+    }
+    .inq-modal.theme-pension .bk-slot:hover {
+      background: rgba(6,105,247,.12); border-color: rgba(6,105,247,.5); color: #93c5fd;
+    }
+    .inq-modal.theme-pension .bk-slot.active {
+      background: #0669F7; border-color: #0669F7; color: #fff;
+    }
+    .inq-modal.theme-pension .bk-next-btn { background: #0669F7; }
+    .inq-modal.theme-pension .bk-next-btn:hover { background: #044FC0; }
+    .inq-modal.theme-pension .bk-done-icon {
+      background: rgba(6,105,247,.12); border-color: rgba(6,105,247,.35);
+    }
+    .inq-modal.theme-pension .meet-btn {
+      background: rgba(6,105,247,.12); border-color: rgba(6,105,247,.35); color: #93c5fd;
+    }
+    .inq-modal.theme-pension .meet-btn:hover { background: rgba(6,105,247,.22); }
   `;
   var styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -422,16 +463,19 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
   /* ── Logic ─────────────────────────────────────────── */
   window.openInquiry = function (source) {
     var overlay = document.getElementById('inqOverlay');
+    var modal   = overlay.querySelector('.inq-modal');
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     // Reset to form state
     document.getElementById('inqFormSection').style.display = '';
-    document.getElementById('inqSuccess').style.display = '';
     document.getElementById('inqSuccess').style.display = 'none';
     document.getElementById('inqForm').reset();
     clearErrors();
-    if (source) {
-      // optionally pre-fill or adjust title based on source page
+    // 페이지 소스에 따른 컬러 테마 적용
+    if (source === 'pension') {
+      modal.classList.add('theme-pension');
+    } else {
+      modal.classList.remove('theme-pension');
     }
   };
 
