@@ -7,10 +7,10 @@
  *   - ADMIN_PW: 어드민 비밀번호
  */
 
-var CAL_ID    = 'kyle@worksmate.co.kr';
+var CAL_ID    = 'worksmate2020@gmail.com';
 var ADMIN_PW  = 'admin1234';
 var SS_NAME   = 'GADA_예약관리';
-var SS_ID     = '1xca4oJ6jfRRRI44hE_TiJ1ciCeOd9PLbJkybmytH2Gc';
+var SS_ID     = '1Mv1i-rpEk1eYZDFm9og5GYq7fCA_LzBQgpGTunCVDqk';
 
 // ── 기본 가용 설정 ──────────────────────────────────────────
 var DEFAULT_CFG = {
