@@ -463,15 +463,19 @@
     .sticky-fab:hover { background: var(--gada-d); transform: scale(1.02); }
 
     /* ── RESPONSIVE ── */
+    html, body { overflow-x: hidden; max-width: 100%; }
+
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .nav-product { display: none; }
       .ham { display: flex; }
       .nav-cta { display: none; }
       .nav-cta-mobile { display: flex; align-items: center; font-size: 12px; font-weight: 800; background: var(--gada); color: #fff; padding: 7px 14px; border-radius: var(--r); }
-      section { padding: 52px 0; }
+      section { padding: 48px 0; }
       .wrap, .wrap-sm { padding: 0 16px; }
       .hero-stats { grid-template-columns: 1fr 1fr; }
+      .hero-h1 { font-size: clamp(26px, 7vw, 40px); }
+      .hero-sub { font-size: 15px; }
       .prob-grid { grid-template-columns: 1fr; }
       .prob-stat-num { font-size: 18px; }
       .feat-grid { grid-template-columns: 1fr; }
@@ -479,11 +483,32 @@
       .law-wrap { grid-template-columns: 1fr; gap: 32px; }
       .gu-card-grid { grid-template-columns: 1fr; }
       #how-it-works .wrap > div { grid-template-columns: 1fr !important; }
+      /* 솔루션 플로우: 모바일에서 세로 스택 */
+      .flow-row { min-width: unset; flex-direction: column; align-items: center; gap: 8px; }
+      .flow-box { padding: 28px 20px; }
+      .fn { width: 100%; flex-direction: row; justify-content: flex-start; gap: 16px; text-align: left; }
+      .fn-ico { width: 48px; height: 48px; font-size: 22px; flex-shrink: 0; margin: 0; }
+      .fn-lbl { font-size: 13px; }
+      .fn-arr { display: none; }
+      /* 캘린더 카드 */
+      .step-card { padding: 20px 18px; }
+      /* 히어로 stat */
+      .hero-stats > div:last-child { grid-column: 1 / -1; }
     }
-    @media (max-width: 700px) { .ba-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 700px) {
+      .ba-grid { grid-template-columns: 1fr; }
+      /* Before/After 모바일 카드 */
+      .ba-r { grid-template-columns: 1fr; }
+      .ba-hd-m, .ba-cm, .ba-fm { display: none; }
+    }
     @media (max-width: 600px) {
+      section { padding: 40px 0; }
       .hero-btns { flex-direction: column; }
-      .cta-btns  { flex-direction: column; align-items: center; }
+      .hero-btns .btn { width: 100%; justify-content: center; }
+      .cta-btns  { flex-direction: column; align-items: stretch; }
+      .cta-btns .btn { justify-content: center; }
+      .hero-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .sticky-fab { padding: 11px 18px; font-size: 13px; }
     }
     @media (hover: none) {
       .prob-card:hover, .feat-card:hover, .legal-card:hover, .gu-card:hover { transform: none; box-shadow: var(--shadow); }
