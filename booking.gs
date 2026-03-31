@@ -21,17 +21,12 @@ var DEFAULT_CFG = {
   maxDaysAhead: 30               // 오늘로부터 예약 가능 기간
 };
 
-// ── CORS 헬퍼 ──────────────────────────────────────────────
-function cors(output) {
-  return output
-    .setMimeType(ContentService.MimeType.JSON)
-    .addHeader('Access-Control-Allow-Origin', '*')
-    .addHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-    .addHeader('Access-Control-Allow-Headers', 'Content-Type');
-}
-
+// ── JSON 응답 ──────────────────────────────────────────────
+// Apps Script 웹 앱은 CORS를 자동 처리하므로 addHeader 불필요
 function json(data) {
-  return cors(ContentService.createTextOutput(JSON.stringify(data)));
+  return ContentService
+    .createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 // ── GET 라우터 ─────────────────────────────────────────────
