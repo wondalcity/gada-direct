@@ -10,6 +10,7 @@
 var CAL_ID    = 'kyle@worksmate.co.kr';
 var ADMIN_PW  = 'admin1234';
 var SS_NAME   = 'GADA_예약관리';
+var SS_ID     = '1xca4oJ6jfRRRI44hE_TiJ1ciCeOd9PLbJkybmytH2Gc';
 
 // ── 기본 가용 설정 ──────────────────────────────────────────
 var DEFAULT_CFG = {
@@ -278,7 +279,7 @@ function handleSaveLead(body) {
 }
 
 function getLeadSheet() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet() || SpreadsheetApp.create(SS_NAME);
+  var ss = SpreadsheetApp.openById(SS_ID);
   var sh = ss.getSheetByName('리드') || ss.insertSheet('리드');
   if (sh.getLastRow() === 0) {
     sh.appendRow(['접수일시', '건설사유형', '건설사명', '담당자', '연락처', '이메일', '현장규모', '요구사항', '유입경로']);
@@ -290,8 +291,7 @@ function getLeadSheet() {
 
 // ── Spreadsheet 기록 ───────────────────────────────────────
 function getSheet() {
-  var ssList = SpreadsheetApp.getActiveSpreadsheet();
-  var ss     = ssList || SpreadsheetApp.create(SS_NAME);
+  var ss = SpreadsheetApp.openById(SS_ID);
   var sh     = ss.getSheetByName('예약') || ss.insertSheet('예약');
   if (sh.getLastRow() === 0) {
     sh.appendRow(['날짜', '시간', '건설사', '담당자', '연락처', '이메일', '메모', '이벤트ID', '미팅링크', '등록일시']);
