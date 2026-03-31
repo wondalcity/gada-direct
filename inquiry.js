@@ -623,7 +623,8 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
     year: 0, month: 0,  // 현재 보이는 달
     selDate: '',        // 선택된 날짜 'YYYY-MM-DD'
     selTime: '',        // 선택된 시간 'HH:00'
-    leadName: '', leadEmail: '', leadCompany: '', leadPhone: ''
+    leadName: '', leadEmail: '', leadCompany: '', leadPhone: '',
+    leadScale: '', leadNote: ''
   };
 
   var KR_MONTHS = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
@@ -660,6 +661,8 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
     bk.leadEmail   = document.getElementById('inqContactEmail') ? document.getElementById('inqContactEmail').value.trim() : '';
     bk.leadCompany = document.getElementById('inqCompanyName')  ? document.getElementById('inqCompanyName').value.trim()  : '';
     bk.leadPhone   = document.getElementById('inqContactPhone') ? document.getElementById('inqContactPhone').value.trim() : '';
+    bk.leadScale   = document.getElementById('inqSiteScale')    ? document.getElementById('inqSiteScale').value            : '';
+    bk.leadNote    = document.getElementById('inqRequirements') ? document.getElementById('inqRequirements').value.trim()  : '';
 
     var now = new Date();
     bk.year  = now.getFullYear();
@@ -795,7 +798,9 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
         name:     bk.leadName,
         email:    bk.leadEmail,
         company:  bk.leadCompany,
-        phone:    bk.leadPhone
+        phone:    bk.leadPhone,
+        note:     (bk.leadScale ? '[현장 규모] ' + bk.leadScale + '\n' : '') +
+                  (bk.leadNote  ? '[요구사항] ' + bk.leadNote           : '')
       })
     })
     .then(function (r) { return r.json(); })
