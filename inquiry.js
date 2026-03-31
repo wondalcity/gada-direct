@@ -712,8 +712,8 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
       var thisDate = new Date(bk.year, bk.month, d2);
       var dateStr  = bk.year + '-' + pad2bk(bk.month + 1) + '-' + pad2bk(d2);
       var dow      = thisDate.getDay();
-      var isPast   = thisDate < today;
-      var isFuture = thisDate > maxDate;
+      var isPast    = thisDate < today;
+      var isFuture  = thisDate > maxDate;
       var isWeekend = (dow === 0 || dow === 6);
 
       cell2.className = 'bk-cal-day';
@@ -747,22 +747,12 @@ var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-P
     document.getElementById('bkSlotNext').disabled = true;
     bkShow('bkStepSlot');
 
-    fetch(BOOKING_URL + '?action=slots&date=' + bk.selDate, { redirect: 'follow' })
-      .then(function (r) { return r.json(); })
-      .then(function (res) {
-        var wrap = document.getElementById('bkSlotsWrap');
-        if (!res.slots || res.slots.length === 0) {
-          wrap.innerHTML = '<div class="bk-no-slots">해당 날짜에 가능한 시간이 없습니다.<br>다른 날짜를 선택해주세요.</div>';
-          return;
-        }
-        wrap.innerHTML = '<div class="bk-slots-grid">' +
-          res.slots.map(function (s) {
-            return '<div class="bk-slot' + (s === bk.selTime ? ' active' : '') + '" onclick="bkSelectSlot(\'' + s + '\')">' + s + '</div>';
-          }).join('') + '</div>';
-      })
-      .catch(function () {
-        document.getElementById('bkSlotsWrap').innerHTML = '<div class="bk-no-slots">슬롯을 불러올 수 없습니다.</div>';
-      });
+    var fixedSlots = ['10:00', '13:00', '16:00'];
+    var wrap = document.getElementById('bkSlotsWrap');
+    wrap.innerHTML = '<div class="bk-slots-grid">' +
+      fixedSlots.map(function (s) {
+        return '<div class="bk-slot' + (s === bk.selTime ? ' active' : '') + '" onclick="bkSelectSlot(\'' + s + '\')">' + s + '</div>';
+      }).join('') + '</div>';
   }
 
   function bkSelectSlot(time) {
