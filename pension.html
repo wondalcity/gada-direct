@@ -109,44 +109,84 @@
     .prob-desc { font-size: 14px; color: var(--t2); line-height: 1.8; flex: 1; }
     .prob-risk { display: none; }
 
-    /* ── OVERVIEW (Before/After) ── */
+    /* ── BEFORE/AFTER ── */
     #overview { background: #fff; padding: 64px 0; }
-    .ov-wrap { margin-top: 44px; border-radius: var(--r-lg); overflow: hidden; border: 1.5px solid #e2e8f0; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
-    .ov-r { display: grid; grid-template-columns: 1fr 52px 1fr; }
-    .ov-hd-b { background: #7f1d1d; padding: 20px 28px; display: flex; align-items: center; gap: 12px; }
-    .ov-hd-m { background: #1e293b; display: flex; align-items: center; justify-content: center; font-size: 18px; color: rgba(255,255,255,.3); font-weight: 900; }
-    .ov-hd-a { background: #1e3a8a; padding: 20px 28px; display: flex; align-items: center; gap: 12px; }
-    .ov-hd-ic { font-size: 22px; }
-    .ov-hd-lbl { font-size: 10px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 3px; }
-    .ov-hd-b .ov-hd-lbl { color: rgba(255,255,255,.55); }
-    .ov-hd-a .ov-hd-lbl { color: rgba(255,255,255,.55); }
-    .ov-hd-desc { font-size: 15px; font-weight: 900; color: #fff; }
-    .ov-cb { background: #fff8f8; padding: 22px 28px; display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid #fce7e7; }
-    .ov-cm { background: #f8fafc; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; color: #94a3b8; font-size: 16px; font-weight: 900; }
-    .ov-ca { background: #eff6ff; padding: 22px 28px; display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid #dbeafe; }
-    .ov-r:last-of-type .ov-cb,
-    .ov-r:last-of-type .ov-cm,
-    .ov-r:last-of-type .ov-ca { border-bottom: none; }
-    .ov-topic { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
-    .ov-cb .ov-topic { color: #dc2626; }
-    .ov-ca .ov-topic { color: #1d4ed8; }
-    .ov-txt { font-size: 14px; line-height: 1.75; display: flex; align-items: flex-start; gap: 8px; }
-    .ov-cb .ov-txt { color: #7f1d1d; }
-    .ov-ca .ov-txt { color: #1e3a8a; font-weight: 600; }
-    .ov-ei { font-size: 18px; flex-shrink: 0; line-height: 1.4; margin-top: 1px; }
-    .ov-fb { background: #fef2f2; padding: 16px 28px; display: flex; align-items: center; gap: 8px; border-top: 2px solid #fca5a5; }
-    .ov-fm { background: #f8fafc; border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; }
-    .ov-fa { background: #eff6ff; padding: 16px 28px; display: flex; align-items: center; gap: 8px; border-top: 2px solid #93c5fd; }
-    .ov-fb-txt { font-size: 13px; font-weight: 800; color: #dc2626; }
-    .ov-fa-txt { font-size: 13px; font-weight: 800; color: #1d4ed8; }
+    .ba-wrap { margin-top: 44px; }
+
+    /* 데스크톱 헤더 */
+    .ba-desk-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-radius: 14px 14px 0 0; overflow: hidden;
+    }
+    .ba-dh-b { background: #7f1d1d; padding: 18px 28px; display: flex; align-items: center; gap: 12px; }
+    .ba-dh-a { background: #1e3a8a; padding: 18px 28px; display: flex; align-items: center; gap: 12px; }
+    .ba-dh-ic { font-size: 20px; }
+    .ba-dh-lbl { font-size: 10px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 2px; }
+    .ba-dh-title { font-size: 15px; font-weight: 900; color: #fff; }
+
+    /* 비교 행 */
+    .ba-item { border: 1.5px solid #e2e8f0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+    .ba-item:first-of-type { border-top: 1.5px solid #e2e8f0; }
+
+    /* 토픽 레이블 행 */
+    .ba-topic-row {
+      background: #f1f5f9;
+      padding: 9px 24px;
+      font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #475569;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    /* B / A 셀 */
+    .ba-pair { display: grid; grid-template-columns: 1fr 1fr; }
+    .ba-b { background: #fff8f8; padding: 20px 24px; display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #7f1d1d; line-height: 1.75; border-right: 1px solid #fce7e7; }
+    .ba-a { background: #eff6ff; padding: 20px 24px; display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #1e3a8a; font-weight: 600; line-height: 1.75; }
+    .ba-ei { font-size: 18px; flex-shrink: 0; line-height: 1.5; }
+
+    /* 모바일 태그 (데스크톱에서 숨김) */
+    .ba-mob-tag { display: none; }
+
+    /* 푸터 요약 */
+    .ba-footer { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid #e2e8f0; border-top: none; border-radius: 0 0 14px 14px; overflow: hidden; }
+    .ba-foot-b { background: #fef2f2; padding: 14px 24px; display: flex; align-items: center; gap: 8px; border-top: 2px solid #fca5a5; }
+    .ba-foot-a { background: #eff6ff; padding: 14px 24px; display: flex; align-items: center; gap: 8px; border-top: 2px solid #93c5fd; border-left: 1px solid #dbeafe; }
+    .ba-foot-b span { font-size: 13px; font-weight: 800; color: #dc2626; }
+    .ba-foot-a span { font-size: 13px; font-weight: 800; color: #1d4ed8; }
+
+    /* ── 모바일 ── */
     @media (max-width: 700px) {
-      .ov-r { grid-template-columns: 1fr; }
-      .ov-hd-m, .ov-cm, .ov-fm { display: none; }
-      .ov-hd-b { border-bottom: 3px solid rgba(255,255,255,.15); }
-      .ov-hd-a { border-top: none; }
-      .ov-cb { border-bottom: none; }
-      .ov-ca { border-top: 2px solid #bfdbfe; }
-      .ov-fa { border-top: 2px solid #93c5fd; }
+      .ba-desk-header { display: none; }
+      .ba-wrap { display: flex; flex-direction: column; gap: 14px; }
+
+      /* 카드형 레이아웃 */
+      .ba-item {
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 14px; overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      }
+      .ba-topic-row {
+        background: #1e293b; color: rgba(255,255,255,.8);
+        padding: 11px 18px; font-size: 11px;
+        border-bottom: none;
+      }
+      .ba-pair { display: flex; flex-direction: column; }
+      .ba-b { border-right: none; border-bottom: none; padding: 16px 18px; flex-direction: column; gap: 6px; }
+      .ba-a { padding: 16px 18px; flex-direction: column; gap: 6px; border-top: 2px dashed #bfdbfe; }
+
+      /* 모바일에서 BEFORE / AFTER 태그 표시 */
+      .ba-mob-tag {
+        display: inline-flex; align-items: center; gap: 4px;
+        font-size: 10px; font-weight: 900; letter-spacing: .1em;
+        text-transform: uppercase; padding: 3px 9px; border-radius: 99px; align-self: flex-start;
+      }
+      .ba-b .ba-mob-tag { background: #fca5a5; color: #7f1d1d; }
+      .ba-a .ba-mob-tag { background: #93c5fd; color: #1e3a8a; }
+
+      .ba-b .ba-ei, .ba-a .ba-ei { display: none; }
+
+      /* 푸터 */
+      .ba-footer { flex-direction: column; border-radius: 14px; overflow: hidden; border: 1.5px solid #e2e8f0 !important; }
+      .ba-foot-b, .ba-foot-a { padding: 13px 18px; }
+      .ba-foot-a { border-left: none; border-top: 1px solid #dbeafe; }
     }
 
     /* ── FEATURES ── */
@@ -370,72 +410,91 @@
   <div class="wrap">
     <p class="eyebrow">도입 전 vs 가다 오피스 도입 후</p>
     <h2 class="title">가다 오피스가<br />어떻게 해결하는지 비교해보세요</h2>
-    <div class="ov-wrap">
-      <!-- Header -->
-      <div class="ov-r">
-        <div class="ov-hd-b">
-          <span class="ov-hd-ic">❌</span>
-          <div><div class="ov-hd-lbl">BEFORE</div><div class="ov-hd-desc">현재 — 수동 관리</div></div>
+    <div class="ba-wrap">
+      <!-- 데스크톱 헤더 -->
+      <div class="ba-desk-header">
+        <div class="ba-dh-b">
+          <span class="ba-dh-ic">❌</span>
+          <div><div class="ba-dh-lbl">BEFORE</div><div class="ba-dh-title">현재 — 수동 관리</div></div>
         </div>
-        <div class="ov-hd-m"></div>
-        <div class="ov-hd-a">
-          <span class="ov-hd-ic">✅</span>
-          <div><div class="ov-hd-lbl">AFTER</div><div class="ov-hd-desc">가다 오피스 도입 후</div></div>
-        </div>
-      </div>
-      <!-- Row 1: 4대보험 요율 -->
-      <div class="ov-r">
-        <div class="ov-cb">
-          <div class="ov-topic">4대보험 요율</div>
-          <div class="ov-txt"><span class="ov-ei">📊</span>매년 바뀌는 요율을 수동으로 확인·적용. 구 요율 오적용으로 과납·미납 발생</div>
-        </div>
-        <div class="ov-cm">→</div>
-        <div class="ov-ca">
-          <div class="ov-topic">4대보험 요율</div>
-          <div class="ov-txt"><span class="ov-ei">⚡</span>최신 요율이 시스템에 자동 반영. 국민연금·건강보험·고용보험·산재보험 모두 자동 계산</div>
+        <div class="ba-dh-a">
+          <span class="ba-dh-ic">✅</span>
+          <div><div class="ba-dh-lbl">AFTER</div><div class="ba-dh-title">가다 오피스 도입 후</div></div>
         </div>
       </div>
-      <!-- Row 2: 출역 관리 -->
-      <div class="ov-r">
-        <div class="ov-cb">
-          <div class="ov-topic">출역 관리</div>
-          <div class="ov-txt"><span class="ov-ei">📋</span>현장별 수기 출역부 작성·취합. 근로자별 이력 파악 어렵고 오류 잦음</div>
-        </div>
-        <div class="ov-cm">→</div>
-        <div class="ov-ca">
-          <div class="ov-topic">출역 관리</div>
-          <div class="ov-txt"><span class="ov-ei">📱</span>근로자 출역 데이터 디지털 기록·관리. 현장별·근로자별 실시간 현황 파악 가능</div>
-        </div>
-      </div>
-      <!-- Row 3: 문서 처리 -->
-      <div class="ov-r">
-        <div class="ov-cb">
-          <div class="ov-topic">문서 처리</div>
-          <div class="ov-txt"><span class="ov-ei">📁</span>9종 서류 매월 수기 작성·날인·보관. 감리 요청 시 즉각 대응 불가</div>
-        </div>
-        <div class="ov-cm">→</div>
-        <div class="ov-ca">
-          <div class="ov-topic">문서 처리</div>
-          <div class="ov-txt"><span class="ov-ei">📄</span>9종 문서 자동 생성·전자서명·보관. 감리·소명 요청 즉시 제출 가능</div>
+
+      <!-- 항목 1: 4대보험 요율 -->
+      <div class="ba-item">
+        <div class="ba-topic-row">4대보험 요율</div>
+        <div class="ba-pair">
+          <div class="ba-b">
+            <span class="ba-mob-tag">❌ Before</span>
+            <span class="ba-ei">📊</span>
+            매년 바뀌는 요율을 수동으로 확인·적용. 구 요율 오적용으로 과납·미납 발생
+          </div>
+          <div class="ba-a">
+            <span class="ba-mob-tag">✅ After</span>
+            <span class="ba-ei">⚡</span>
+            최신 요율이 시스템에 자동 반영. 국민연금·건강보험·고용보험·산재보험 모두 자동 계산
+          </div>
         </div>
       </div>
-      <!-- Row 4: 4대보험 신고 기준 -->
-      <div class="ov-r">
-        <div class="ov-cb">
-          <div class="ov-topic">신고 기준 대응</div>
-          <div class="ov-txt"><span class="ov-ei">⚠️</span>2025.07 판단 기준 변경을 모르고 구 기준으로 신고. 오신고·누락 반복</div>
-        </div>
-        <div class="ov-cm">→</div>
-        <div class="ov-ca">
-          <div class="ov-topic">신고 기준 대응</div>
-          <div class="ov-txt"><span class="ov-ei">🎯</span>매월 말일 기준 독립 판단 자동 적용. 기준 변경 즉시 반영, 오신고 Zero</div>
+
+      <!-- 항목 2: 출역 관리 -->
+      <div class="ba-item">
+        <div class="ba-topic-row">출역 관리</div>
+        <div class="ba-pair">
+          <div class="ba-b">
+            <span class="ba-mob-tag">❌ Before</span>
+            <span class="ba-ei">📋</span>
+            현장별 수기 출역부 작성·취합. 근로자별 이력 파악 어렵고 오류 잦음
+          </div>
+          <div class="ba-a">
+            <span class="ba-mob-tag">✅ After</span>
+            <span class="ba-ei">📱</span>
+            근로자 출역 데이터 디지털 기록·관리. 현장별·근로자별 실시간 현황 파악 가능
+          </div>
         </div>
       </div>
-      <!-- Footer -->
-      <div class="ov-r">
-        <div class="ov-fb"><span>⚠️</span><span class="ov-fb-txt">매월 반복되는 수작업·오류·가산세 리스크</span></div>
-        <div class="ov-fm"></div>
-        <div class="ov-fa"><span>✓</span><span class="ov-fa-txt">자동화로 오류 Zero · 행정 부담 80% 절감</span></div>
+
+      <!-- 항목 3: 문서 처리 -->
+      <div class="ba-item">
+        <div class="ba-topic-row">문서 처리</div>
+        <div class="ba-pair">
+          <div class="ba-b">
+            <span class="ba-mob-tag">❌ Before</span>
+            <span class="ba-ei">📁</span>
+            9종 서류 매월 수기 작성·날인·보관. 감리 요청 시 즉각 대응 불가
+          </div>
+          <div class="ba-a">
+            <span class="ba-mob-tag">✅ After</span>
+            <span class="ba-ei">📄</span>
+            9종 문서 자동 생성·전자서명·보관. 감리·소명 요청 즉시 제출 가능
+          </div>
+        </div>
+      </div>
+
+      <!-- 항목 4: 신고 기준 대응 -->
+      <div class="ba-item">
+        <div class="ba-topic-row">신고 기준 대응</div>
+        <div class="ba-pair">
+          <div class="ba-b">
+            <span class="ba-mob-tag">❌ Before</span>
+            <span class="ba-ei">⚠️</span>
+            2025.07 판단 기준 변경을 모르고 구 기준으로 신고. 오신고·누락 반복
+          </div>
+          <div class="ba-a">
+            <span class="ba-mob-tag">✅ After</span>
+            <span class="ba-ei">🎯</span>
+            매월 말일 기준 독립 판단 자동 적용. 기준 변경 즉시 반영, 오신고 Zero
+          </div>
+        </div>
+      </div>
+
+      <!-- 푸터 요약 -->
+      <div class="ba-footer">
+        <div class="ba-foot-b"><span>⚠️</span><span>매월 반복되는 수작업·오류·가산세 리스크</span></div>
+        <div class="ba-foot-a"><span>✓</span><span>자동화로 오류 Zero · 행정 부담 80% 절감</span></div>
       </div>
     </div>
   </div>
