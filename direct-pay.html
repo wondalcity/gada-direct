@@ -239,48 +239,68 @@
 
     /* ── BEFORE / AFTER ── */
     #before-after { background: var(--bg); }
-    .ba-wrap { margin-top: 44px; border-radius: var(--r-lg); overflow: hidden; border: 1.5px solid #e2e8f0; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
-    .ba-r { display: grid; grid-template-columns: 1fr 52px 1fr; }
-    /* Header */
-    .ba-hd-b { background: #7f1d1d; padding: 20px 28px; display: flex; align-items: center; gap: 12px; }
-    .ba-hd-m { background: #1e293b; display: flex; align-items: center; justify-content: center; font-size: 18px; color: rgba(255,255,255,.3); font-weight: 900; }
-    .ba-hd-a { background: #064e3b; padding: 20px 28px; display: flex; align-items: center; gap: 12px; }
-    .ba-hd-ic { font-size: 22px; }
-    .ba-hd-lbl { font-size: 10px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 3px; }
-    .ba-hd-b .ba-hd-lbl { color: rgba(255,255,255,.55); }
-    .ba-hd-a .ba-hd-lbl { color: rgba(255,255,255,.55); }
-    .ba-hd-desc { font-size: 15px; font-weight: 900; color: #fff; }
-    /* Content rows */
-    .ba-cb { background: #fff8f8; padding: 22px 28px; display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid #fce7e7; }
-    .ba-cm { background: #f8fafc; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; color: #94a3b8; font-size: 16px; font-weight: 900; }
-    .ba-ca { background: #f0fdf8; padding: 22px 28px; display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid #ccfbe8; }
-    .ba-r:last-of-type .ba-cb,
-    .ba-r:last-of-type .ba-cm,
-    .ba-r:last-of-type .ba-ca { border-bottom: none; }
-    .ba-topic { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
-    .ba-cb .ba-topic { color: #dc2626; }
-    .ba-ca .ba-topic { color: #059669; }
-    .ba-txt { font-size: 14px; line-height: 1.75; display: flex; align-items: flex-start; gap: 8px; }
-    .ba-cb .ba-txt { color: #7f1d1d; }
-    .ba-cb .ba-txt small { color: #b91c1c; opacity: .75; display: block; margin-top: 3px; }
-    .ba-ca .ba-txt { color: #065f46; font-weight: 600; }
-    .ba-ca .ba-txt small { color: #047857; opacity: .8; display: block; margin-top: 3px; }
-    .ba-ei { font-size: 18px; flex-shrink: 0; line-height: 1.4; margin-top: 1px; }
-    .ba-txt small { display: none !important; }
-    /* Footer row */
-    .ba-fb { background: #fef2f2; padding: 16px 28px; display: flex; align-items: center; gap: 8px; border-top: 2px solid #fca5a5; }
-    .ba-fm { background: #f8fafc; border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; }
-    .ba-fa { background: #ecfdf5; padding: 16px 28px; display: flex; align-items: center; gap: 8px; border-top: 2px solid #6ee7b7; }
-    .ba-fb-txt { font-size: 13px; font-weight: 800; color: #dc2626; }
-    .ba-fa-txt { font-size: 13px; font-weight: 800; color: #059669; }
+    .ba-wrap { margin-top: 44px; }
+
+    /* 데스크톱 헤더 */
+    .ba-desk-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-radius: 14px 14px 0 0; overflow: hidden;
+    }
+    .ba-dh-b { background: #7f1d1d; padding: 18px 28px; display: flex; align-items: center; gap: 12px; }
+    .ba-dh-a { background: #064e3b; padding: 18px 28px; display: flex; align-items: center; gap: 12px; }
+    .ba-dh-ic { font-size: 20px; }
+    .ba-dh-lbl { font-size: 10px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 2px; }
+    .ba-dh-title { font-size: 15px; font-weight: 900; color: #fff; }
+
+    /* 비교 행 */
+    .ba-item { border: 1.5px solid #e2e8f0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+    .ba-item:first-of-type { border-top: 1.5px solid #e2e8f0; }
+
+    /* 토픽 레이블 행 */
+    .ba-topic-row {
+      background: #f1f5f9;
+      padding: 9px 24px;
+      font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #475569;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    /* B / A 셀 */
+    .ba-pair { display: grid; grid-template-columns: 1fr 1fr; }
+    .ba-b { background: #fff8f8; padding: 20px 24px; display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #7f1d1d; line-height: 1.75; border-right: 1px solid #fce7e7; }
+    .ba-a { background: #f0fdf8; padding: 20px 24px; display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #065f46; font-weight: 600; line-height: 1.75; }
+    .ba-ei { font-size: 18px; flex-shrink: 0; line-height: 1.5; }
+
+    /* 모바일 태그 (데스크톱에서 숨김) */
+    .ba-mob-tag { display: none; }
+
+    /* 푸터 요약 */
+    .ba-footer { display: none; }
+
+    /* ── 모바일 BA ── */
     @media (max-width: 700px) {
-      .ba-r { grid-template-columns: 1fr; }
-      .ba-hd-m, .ba-cm, .ba-fm { display: none; }
-      .ba-hd-b { border-bottom: 3px solid rgba(255,255,255,.15); }
-      .ba-hd-a { border-top: none; }
-      .ba-cb { border-bottom: none; }
-      .ba-ca { border-top: 2px solid #bbf7d0; }
-      .ba-fa { border-top: 2px solid #6ee7b7; }
+      .ba-desk-header { display: none; }
+      .ba-wrap { display: flex; flex-direction: column; gap: 14px; }
+      .ba-item {
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 14px; overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      }
+      .ba-topic-row {
+        background: #1e293b; color: rgba(255,255,255,.8);
+        padding: 11px 18px; font-size: 11px;
+        border-bottom: none;
+      }
+      .ba-pair { display: flex; flex-direction: column; }
+      .ba-b { border-right: none; border-bottom: none; padding: 16px 18px; flex-direction: column; gap: 6px; }
+      .ba-a { padding: 16px 18px; flex-direction: column; gap: 6px; border-top: 2px dashed #a7f3d0; }
+      .ba-mob-tag {
+        display: inline-flex; align-items: center; gap: 4px;
+        font-size: 10px; font-weight: 900; letter-spacing: .1em;
+        text-transform: uppercase; padding: 3px 9px; border-radius: 99px; align-self: flex-start;
+      }
+      .ba-b .ba-mob-tag { background: #fca5a5; color: #7f1d1d; }
+      .ba-a .ba-mob-tag { background: #6ee7b7; color: #064e3b; }
+      .ba-b .ba-ei, .ba-a .ba-ei { display: none; }
     }
 
     /* ── LEGAL HERO (light mode overrides) ── */
@@ -497,9 +517,6 @@
     }
     @media (max-width: 700px) {
       .ba-grid { grid-template-columns: 1fr; }
-      /* Before/After 모바일 카드 */
-      .ba-r { grid-template-columns: 1fr; }
-      .ba-hd-m, .ba-cm, .ba-fm { display: none; }
     }
     @media (max-width: 600px) {
       section { padding: 40px 0; }
@@ -742,71 +759,90 @@
     <p class="eyebrow">구조 비교</p>
     <h2 class="title">직접지급으로 전환하면<br />무엇이 달라지나요?</h2>
     <div class="ba-wrap">
-      <!-- Header -->
-      <div class="ba-r">
-        <div class="ba-hd-b">
-          <span class="ba-hd-ic">❌</span>
-          <div><div class="ba-hd-lbl">BEFORE</div><div class="ba-hd-desc">현재 — 간접 지급 구조</div></div>
+      <!-- 데스크톱 헤더 -->
+      <div class="ba-desk-header">
+        <div class="ba-dh-b">
+          <span class="ba-dh-ic">❌</span>
+          <div><div class="ba-dh-lbl">BEFORE</div><div class="ba-dh-title">현재 — 간접 지급 구조</div></div>
         </div>
-        <div class="ba-hd-m"></div>
-        <div class="ba-hd-a">
-          <span class="ba-hd-ic">✅</span>
-          <div><div class="ba-hd-lbl">AFTER</div><div class="ba-hd-desc">가다 직접지급 도입 후</div></div>
-        </div>
-      </div>
-      <!-- Row 1: 지급 구조 -->
-      <div class="ba-r">
-        <div class="ba-cb">
-          <div class="ba-topic">지급 구조</div>
-          <div class="ba-txt"><span class="ba-ei">🏗️</span>건설사 → 용역사 계좌 → 근로자 재지급<br/><small style="opacity:.6;font-size:12px;">용역사를 통한 간접 지급</small></div>
-        </div>
-        <div class="ba-cm">→</div>
-        <div class="ba-ca">
-          <div class="ba-topic">지급 구조</div>
-          <div class="ba-txt"><span class="ba-ei">🏦</span>현장 전용 계좌 → 근로자 직접 이체<br/><small style="opacity:.7;font-size:12px;">iM뱅킹 전용계좌, 중간 단계 없음</small></div>
+        <div class="ba-dh-a">
+          <span class="ba-dh-ic">✅</span>
+          <div><div class="ba-dh-lbl">AFTER</div><div class="ba-dh-title">가다 직접지급 도입 후</div></div>
         </div>
       </div>
-      <!-- Row 2: 법적 리스크 -->
-      <div class="ba-r">
-        <div class="ba-cb">
-          <div class="ba-topic">법적 리스크</div>
-          <div class="ba-txt"><span class="ba-ei">🚨</span>용역사 체불·횡령 시 원도급 연대 책임<br/><small style="opacity:.6;font-size:12px;">금액 무제한, 사전 차단 불가</small></div>
-        </div>
-        <div class="ba-cm">→</div>
-        <div class="ba-ca">
-          <div class="ba-topic">법적 리스크</div>
-          <div class="ba-txt"><span class="ba-ei">🛡️</span>전용계좌 구조로 체불·횡령 리스크 원천 차단<br/><small style="opacity:.7;font-size:12px;">법무법인 적법성 검토 완료</small></div>
-        </div>
-      </div>
-      <!-- Row 3: 서류 작업 -->
-      <div class="ba-r">
-        <div class="ba-cb">
-          <div class="ba-topic">서류 작업</div>
-          <div class="ba-txt"><span class="ba-ei">📄</span>노무비 대장 수동 작성 → 오류·지연 발생<br/><small style="opacity:.6;font-size:12px;">감리 제출 지연, 관리 공수 과다</small></div>
-        </div>
-        <div class="ba-cm">→</div>
-        <div class="ba-ca">
-          <div class="ba-topic">서류 작업</div>
-          <div class="ba-txt"><span class="ba-ei">📋</span>이체 완료 즉시 노무비 대장·이체증 자동 생성<br/><small style="opacity:.7;font-size:12px;">감리 제출 즉시 가능, 무서류 운영</small></div>
+
+      <!-- 항목 1: 지급 구조 -->
+      <div class="ba-item">
+        <div class="ba-topic-row">지급 구조</div>
+        <div class="ba-pair">
+          <div class="ba-b">
+            <span class="ba-mob-tag">❌ Before</span>
+            <span class="ba-ei">🏗️</span>
+            건설사 → 용역사 계좌 → 근로자 재지급. 중간 단계를 거친 간접 지급 구조
+          </div>
+          <div class="ba-a">
+            <span class="ba-mob-tag">✅ After</span>
+            <span class="ba-ei">🏦</span>
+            현장 전용 계좌 → 근로자 직접 이체. iM뱅킹 전용계좌, 중간 단계 없음
+          </div>
         </div>
       </div>
-      <!-- Row 4: 자금 운용 -->
-      <div class="ba-r">
-        <div class="ba-cb">
-          <div class="ba-topic">자금 운용</div>
-          <div class="ba-txt"><span class="ba-ei">💸</span>매일 지급으로 자금 경직, 월말 유동성 부족<br/><small style="opacity:.6;font-size:12px;">현금 여유 없이 일 단위 출금</small></div>
-        </div>
-        <div class="ba-cm">→</div>
-        <div class="ba-ca">
-          <div class="ba-topic">자금 운용</div>
-          <div class="ba-txt"><span class="ba-ei">💰</span>자금 선투입 → 건설사 월 단위 정산<br/><small style="opacity:.7;font-size:12px;">유동성 확보, 자금 계획 수립 가능</small></div>
+
+      <!-- 항목 2: 법적 리스크 -->
+      <div class="ba-item">
+        <div class="ba-topic-row">법적 리스크</div>
+        <div class="ba-pair">
+          <div class="ba-b">
+            <span class="ba-mob-tag">❌ Before</span>
+            <span class="ba-ei">🚨</span>
+            용역사 체불·횡령 시 원도급 연대 책임. 금액 무제한, 사전 차단 불가
+          </div>
+          <div class="ba-a">
+            <span class="ba-mob-tag">✅ After</span>
+            <span class="ba-ei">🛡️</span>
+            전용계좌 구조로 체불·횡령 리스크 원천 차단. 법무법인 적법성 검토 완료
+          </div>
         </div>
       </div>
-      <!-- Footer -->
-      <div class="ba-r">
-        <div class="ba-fb"><span>⚠️</span><span class="ba-fb-txt">체불 발생 시 무한 책임</span></div>
-        <div class="ba-fm"></div>
-        <div class="ba-fa"><span>✓</span><span class="ba-fa-txt">법무법인 적법성 검토 완료</span></div>
+
+      <!-- 항목 3: 서류 작업 -->
+      <div class="ba-item">
+        <div class="ba-topic-row">서류 작업</div>
+        <div class="ba-pair">
+          <div class="ba-b">
+            <span class="ba-mob-tag">❌ Before</span>
+            <span class="ba-ei">📄</span>
+            노무비 대장 수동 작성 → 오류·지연 발생. 감리 제출 지연, 관리 공수 과다
+          </div>
+          <div class="ba-a">
+            <span class="ba-mob-tag">✅ After</span>
+            <span class="ba-ei">📋</span>
+            이체 완료 즉시 노무비 대장·이체증 자동 생성. 감리 제출 즉시 가능
+          </div>
+        </div>
+      </div>
+
+      <!-- 항목 4: 자금 운용 -->
+      <div class="ba-item">
+        <div class="ba-topic-row">자금 운용</div>
+        <div class="ba-pair">
+          <div class="ba-b">
+            <span class="ba-mob-tag">❌ Before</span>
+            <span class="ba-ei">💸</span>
+            매일 지급으로 자금 경직, 월말 유동성 부족. 현금 여유 없이 일 단위 출금
+          </div>
+          <div class="ba-a">
+            <span class="ba-mob-tag">✅ After</span>
+            <span class="ba-ei">💰</span>
+            자금 선투입 → 건설사 월 단위 정산. 유동성 확보, 자금 계획 수립 가능
+          </div>
+        </div>
+      </div>
+
+      <!-- 푸터 요약 (숨김) -->
+      <div class="ba-footer">
+        <div class="ba-foot-b"><span>⚠️</span><span>체불 발생 시 무한 책임</span></div>
+        <div class="ba-foot-a"><span>✓</span><span>전용계좌 구조로 리스크 원천 차단</span></div>
       </div>
     </div>
   </div>
