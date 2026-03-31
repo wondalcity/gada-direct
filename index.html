@@ -57,16 +57,21 @@
     .mnav-link:hover { background: var(--bg); }
 
     /* ── HERO ── */
-    #hero { background: var(--dark); padding: 0; position: relative; overflow: hidden; }
-    .hero-glow { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(120px); opacity: .10; }
+    #hero {
+      padding: 0; position: relative; overflow: hidden;
+      background:
+        linear-gradient(to right, rgba(10,17,30,0.88) 0%, rgba(10,17,30,0.72) 50%, rgba(10,17,30,0.40) 100%),
+        url('home-hero-tablet.jpg') center top / cover no-repeat;
+    }
+    .hero-glow { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(120px); opacity: .08; z-index: 1; }
     .g1 { width: 600px; height: 600px; background: var(--gada); top: -120px; left: -80px; }
     .g2 { width: 400px; height: 400px; background: var(--blue); bottom: -80px; left: 30%; }
     .hero-inner {
-      position: relative; z-index: 1;
-      display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; min-height: 600px;
+      position: relative; z-index: 2;
+      display: flex; align-items: center;
+      min-height: 640px;
     }
-    .hero-text { padding: 88px 0 88px 0; }
+    .hero-text { padding: 100px 0; max-width: 580px; }
     .hero-badge { display: none; }
     .hero-eyebrow {
       display: none;
@@ -81,11 +86,11 @@
     .hero-h1 { font-size: clamp(30px, 4vw, 52px); font-weight: 900; color: #fff; line-height: 1.12; letter-spacing: -.035em; margin-bottom: 20px; }
     .hero-h1 .acc-g { color: var(--gada); }
     .hero-h1 .acc-y { color: var(--yellow); }
-    .hero-sub { font-size: 16px; color: rgba(255,255,255,.55); line-height: 1.85; max-width: 480px; margin-bottom: 16px; }
-    .hero-sub strong { color: rgba(255,255,255,.85); }
-    .hero-divider { height: 1px; background: rgba(255,255,255,.1); margin: 24px 0; max-width: 480px; }
+    .hero-sub { font-size: 16px; color: rgba(255,255,255,.65); line-height: 1.85; max-width: 480px; margin-bottom: 16px; }
+    .hero-sub strong { color: rgba(255,255,255,.9); }
+    .hero-divider { height: 1px; background: rgba(255,255,255,.15); margin: 24px 0; max-width: 480px; }
     .hero-feats { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-    .hero-feat { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,.7); }
+    .hero-feat { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,.75); }
     .hero-feat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gada); flex-shrink: 0; }
     .hero-btns { display: flex; flex-wrap: wrap; gap: 12px; }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-family: 'Pretendard', sans-serif; font-weight: 700; border: none; border-radius: var(--r); cursor: pointer; transition: all .18s; text-decoration: none; }
@@ -93,29 +98,19 @@
     .btn-gada:hover { background: var(--gada-d); transform: translateY(-1px); }
     .btn-ghost { background: rgba(255,255,255,.06); color: rgba(255,255,255,.75); border: 1.5px solid rgba(255,255,255,.18); padding: 14px 28px; font-size: 15px; }
     .btn-ghost:hover { background: rgba(255,255,255,.1); color: #fff; }
-    /* Hero image */
-    .hero-img-col {
-      position: relative; align-self: stretch;
-      display: flex; align-items: flex-end; justify-content: center;
-      padding-top: 40px;
-    }
-    .hero-img-col img {
-      display: block; width: 100%; max-width: 640px;
-      height: 100%; object-fit: cover; object-position: top center;
-      border-radius: 16px 16px 0 0;
-      box-shadow: 0 -8px 40px rgba(0,0,0,.3);
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
-      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
-    }
     .hero-products { display: none; }
     .prod-tag { padding: 3px 12px; border-radius: 99px; font-size: 13px; font-weight: 800; }
     .pt-blue { background: var(--blue); color: #fff; }
     .pt-fp   { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); border: 1px solid rgba(255,255,255,.2); }
     .prod-sep { color: rgba(255,255,255,.2); font-size: 18px; }
     @media (max-width: 860px) {
-      .hero-inner { grid-template-columns: 1fr; min-height: auto; }
-      .hero-img-col { display: none; }
-      .hero-text { padding: 64px 0; }
+      #hero {
+        background:
+          linear-gradient(rgba(10,17,30,0.82), rgba(10,17,30,0.82)),
+          url('home-hero-tablet.jpg') center top / cover no-repeat;
+      }
+      .hero-inner { min-height: 520px; }
+      .hero-text { padding: 72px 0; max-width: 100%; }
     }
 
     /* ── ISSUE SPLIT ── */
@@ -313,7 +308,6 @@
   <div class="hero-glow g1"></div>
   <div class="hero-glow g2"></div>
   <div class="wrap hero-inner">
-    <!-- 텍스트 좌측 -->
     <div class="hero-text">
       <div class="hero-eyebrow">
         <span class="hero-eyebrow-tag het-blue">가다 오피스</span>
@@ -336,10 +330,6 @@
       <div class="hero-btns">
         <a href="#" onclick="openInquiry('index');return false;" class="btn btn-gada">도입 문의</a>
       </div>
-    </div>
-    <!-- 이미지 우측 -->
-    <div class="hero-img-col">
-      <img src="home-hero-tablet.jpg" alt="가다 오피스 — 현장 노무 관리 화면" />
     </div>
   </div>
 </section>
