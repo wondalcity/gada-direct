@@ -4,7 +4,7 @@
  */
 var SUPABASE_URL  = 'https://evaddagjpjiekbhsmgxh.supabase.co';
 var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2YWRkYWdqcGppZWtiaHNtZ3hoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0ODc0MzYsImV4cCI6MjA5MDA2MzQzNn0.kC9rIBMvvScgfZyrlNhM6M7GKynQjagbJUN-VX6wmsM';
-var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbxVOT-BAnQsBQmNQY-Pgk3PrtZspg-NR6DubH0-qXxCnyLcpjQ-YyWT2MYH9J0mXktLLw/exec';
+var BOOKING_URL   = 'https://script.google.com/macros/s/AKfycbw3I1uhlcEOCTrrle1xQixGDJJGlo8GqIEEfN0DUD4mQXe4bZzrQLjneAL0pyksOATK/exec';
 
 (function () {
   /* ── CSS ─────────────────────────────────────────── */
